@@ -1,0 +1,8 @@
+
+根据block在内存中的位置，系统吧block分为3类：
+NSGlobalBlock:没有引用局部变量的block
+1.没有使用任何变量
+2.使用全局变量
+NSStackBlock:引用了局部变量的block
+NSMallocBlock:从栈区复制过来的block称为堆区block
+

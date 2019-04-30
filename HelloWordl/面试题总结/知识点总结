@@ -1,0 +1,494 @@
+
+
+
+1.常用的设计模式：
+1.单例模式
+2.委托模式
+3.MVC
+4.组合模式
+5.观察者模式
+6.工厂模式
+
+2.MVC的理解：
+Model（数据管理者） View（数据展示者） Controller（数据加工者）
+Model通过KVO和NSNotification和Controller进行通信
+View通过Target-Action和Delegate和Controller进行通信
+Model和View不直接通信
+
+3.MVC与MVVM的区别：
+MVC又被称为Massive-V-C，其本质是给Controller减负，将一些弱业务逻辑放到VM中处理，
+在iOS开发中，MVC是一切设计模式的基础
+Model  View Controler
+Model  View   ViewModel
+
+4.TCP和UDP的区别：
+TCP是面相连接的，数据可靠，速度慢
+UDP是无连接的，速度快，但是会丢包
+
+5.TCP的三次握手
+1。客服端发送自己的syn包到服务器，此时处于syn_send状态
+2。服务器收到客户端的syn包，必须确认客户的syn同时自己也发送一个syn包，即syn+ack包，此时服务器进入syn_recv状态。
+3。客户端收到服务器的syn+ack包后，想服务器发送确认包，此包发送完毕，客户端和服务器进入ESTABLISHED状态，完成第三次握手
+
+6.iOS中的所有架构
+模拟器：
+i386     4s-5
+x86_64   5s---最新
+真机：
+armv7    3gs--4S
+armv7s   5/5c
+arm64    5s---最新
+
+7.用过sqlite吗？读写是分线程的吗？遇见过死锁没？如何解决的？
+用过，使用FMDB框架，丢给FMDatabaseQueue或者加锁
+
+
+8.请简单的介绍下APNS发送系统消息的机制
+1.应用在通知中心注册，由iOS系统向APNS服务器请求返回设备令牌（Device Token）
+2.应用程序接收到设备令牌并发送给自己的后台服务器
+3.后台服务器将要推送的内容和设备令牌发送给APNS服务器
+4.APNS根据设备令牌找到设备，在由iOS系统根据APPID把推送消息展示
+
+9.不用中间变量，用两种方法交换A，B的值
+a = a + b;
+b = a - b;
+a = a - b;
+可以完成对整形变量的交换，对于浮点型不行
+a = a^b;
+b = a^b;
+a = a^b;
+
+10.是否可以把比较耗时的操作发到NSNotificationCenter中
+首先必须明确通知在哪个线程中发出，那么处理接收到通知的方法也在这个线程中调用
+如果在异步线程发的通知，那么可以执行比较耗时的操作
+如果在主线程发的通知，那么就不可以执行比较耗时的操作。
+
+
+11.runtime如何实现weak属性
+weak策略表明该属性定义了一种非拥有关系。
+为这种属性赋值时，即不保留新值,也不释放旧值，此特质同assign类似，然后再属性所指向的对象遭到摧毁时，属性值也会清空（nil）
+runtime如何实现weak变量的自动置为nil
+runtime对注册的类会进行布局，会将weak对象放进hash表中。用weak指向的对象内存地址作为key，指向weak的所有指针数组为value，当对象的引用计数为0时会调用对象的dealloc方法，假设对象的内存地址为a，那么就以a为key，在这个weak hash表中搜索，找到weak指针的数组并遍历其中的所有元素，将其指向nil.
+
+12.weak属性需要在dealloc中置为nil吗
+不需要
+
+13.一个OC对象如何进行内存布局
+对象方法列表
+成员变量列表
+属性列表
+
+
+OC对象的结构图
+ISA指针
+根类的实例变量
+倒数第二层父类的实例变量
+。。。
+父类的实例变量
+类的实例变量
+
+
+14.一个OC对象的isa指针指向什么，有什么作用
+每一个对象内部都有一个isa指针，这个指针是指向他的真实类型
+根据这个指针就能知道将来调用哪个类的方法
+
+
+15.下面的代码输出什么
+self是类的隐藏参数
+super是编译器指示符，指向当前调用方法的这个类的实例
+
+16.runtime如何通过selector来找到的IMP地址？
+每一个类对象都有一个对象方法列表（对象方法缓存），类方法列表是存放在类对象中isa指针
+指向的元类对象中，方法列表中每个方法结构体中记录着方法的名称，方法实现，以及参数类型，
+其实selector本质就是方法名称，通过方法名称就可以在方法列表中找到对应的方法实现。
+当我们发送一个消息给一个NSObject对象时，这条消息会在对象的类对象方法列表里查找，当我们发送一个消息给一个类时，这条消息会在类的元类对象的方法列表中去查找。
+
+
+17.使用 runtime Associate方法关联的对象，需要在主对象 dealloc的时候释放么？
+不需要
+
+
+18._objc_msgForward函数是做什么的？直接调用它会发生什么
+_objc_msgForward是IMP类型，用于消息转发的。当向一个发送消息发送一条消息，但它并没有实现的时候，_objc_msgForward会尝试做消息转发。JSPatch就是直接调用_objc_msgForward来实现其核心功能的。
+
+
+19.能否想编译后的类中增加实例变量？能否向运行时的类中添加实例变量，为什么？
+不能像编译后的类中增加实例变量，因为编译后的类在runtime中已经注册，类的实例变量的b链表和尺大小都是固定的，能想运行时的类中添加实例变量，在allocate和register之间调用即可
+
+
+20.RunLoop和线程之间有什么关系
+每条线程都有一个唯一的RunLoop对象与之对应的，主线程的RunLoop是自动创建并启动
+子线程的RunLoop需要手动创建，在子线程中调用[NSRunLoop currentRunLoop](懒加载，只创建一次)
+，获得RunLoop对象后要调用Run方法来启动一个运行循环
+
+
+21.RunLoop的Mode作用是什么
+用来控制一些特定操作只能在指定模式下运行，mode来控制运行时机。
+系统默认注册了5个Mode
+1.kCFRunLoopDefaultMode:App的默认Mode
+2。UITrackingRunLoopMode:界面跟踪Mode，用于ScrollView跟踪触摸滑动，保证界面滑动时不受其他Mode影响
+3。kCFRunLoopCommonModes:这是一个标记Mode，不是一个真正的Mode，事件可以运行在所有标有common modes标记的模式中，对应OC的NSRunLoopCommonModes，带有common modes标记的模式：
+UITrachingRunLoopMode和kCFRunLoopDefaultMode
+
+
+22.以+scheduledTimerWithTimeInterval...的方式触发的 timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？
+在主线程中以scheduledTimerWithTimeInterval的方式触发的Timer默认是运行在NSDefaultRunLoopMode模式下的，当滑动页面上的列表时，进入了UITrackingRunLoopMode模式，这是Timer就会
+停止，可以修改Timer的运行模式为UIRunLoopCommonModes，这时定时器就可以一直运行了。
+
+
+23.协议在OC中和Java中的区别
+Java的接口中声明的方法必须都实现
+OC中的protocol中声明的方法分为optional和required
+
+24.什么是KVC和KVO
+KVC是键值编码，是一种通过字符串间接访问对象的属性的方式
+KVO是键值监听，可以监听一个对象属性值的改变
+
+
+25.delegate的作用是什么
+两个对象之间传递数据和参数
+解耦，拆分业务逻辑
+
+
+26.为什么说OC是动态语言
+1.动态类型，即运行时再决定对象的类型
+2.动态绑定，消息机制，调用方法的对象类型和所调用的方法都是运行时才决定的
+3.动态加载
+4.多态，不同对象以自己的方式响应相同的消息的能力叫做多态
+
+
+27.什么是推送通知
+本地推送：程序内部弹出通知到用户设备
+远程推送：由苹果APNS服务器推送通知到设备
+
+
+28.什么是多态
+父类指针指向子类对象
+
+29.什么是谓词
+可以以一定条件来过滤数组，字典等集合数据，也能用在CoreData的数据查询中
+
+30.多线程的底层实现
+1.C语言的POSIX接口：#include <pthread.h>
+2.OC的NSThread
+3.C语言的GCD接口
+4.OC的NSOperation和NSOperationQueue
+
+
+31.线程间怎么通信
+[self performSelector],NSOperationQueue,GCD
+
+32.网络图片处理问题中怎么解决一个相同的网络，地址重复请求的问题
+利用字典，以URL为key，下载操作为value
+
+
+
+36.Method Swizzling需要注意的几个点
+1.避免交换父类方法
+2.交换方法应该在+load方法
+3.交换方法应该放在dispatch_once中执行：防止手动调用+load方法而导致反复的被交换
+4.交换的父类方法应该添加自定义前缀，避免冲突
+5.交换的分类方法应调用原实现
+
+37.什么情况下会发生内存泄露和内存溢出
+分配的内存在该回收的时候无法回收，就是内存泄露，比如申请了一个int，但给它存了long才能存下的数，那就是内存溢出。
+
+
+38.[NSArray arrayWithObject:<id>]这个方法添加对象后，需要对这个数组做释放操作吗
+不需要，这个对象被放到自动释放池中。
+
+
+39.自动释放池底层怎么实现
+自动释放池以栈的形式实现，当你创建一个新的自动释放池时，它将被添加到栈顶，当一个对象收到autoRelease消息时，它被添加到当前当前线程的处于栈顶的自动释放池中，当自动释放池被回收时，他们从栈中被删除，并且会给池子里面多有的对象都会做一次release消息
+
+
+40.自动释放池是什么，如何工作
+当你想一个对象发送autorelease消息时，Cocoa就会将该对象的一个引用放入最新的自动释放池，它仍然是个正常的对象，因此自动释放池作用域内的其他对象可以向它发送消息。当程序执行到作用域结束的时候，自动释放池就会被释放，池中的所有对象也会被释放
+
+41.如何ARC和MRR混编
+-fobjc-arc
+-fno-objc-arc
+
+
+42.KVO内部实现原理
+KVO是基于Runtime实现的，当一个对象被注册为被观察者的时候，这个类A在运行时会动态生成一个派生类KVONotifying_A，这个类继承于A，并且A的isa指针会指向这个类，通过修改被观察属性的set方法，调用willChangeValueFor和didChangeValueForKey来触发回调
+
+
+43.数据库中的左连接和右连接的区别
+左连接：只要左边表中有记录，数据就能检索出来，而右边有的记录必须在左边表中有才能被检索出来
+右连接：只要右边表中有记录，就能被查询出来
+
+新建两张表：t_left_tab和t_right_tab，将t_left_tab作为左边表,t_right_tab作为右边表
+左连接：SELECT * FROM t_left_tab a LEFT JOIN t_right_tab b ON a.'id'=b.'id';
+右连接：SELECT * FROM t_right_tab a LEFT JOIN t_left_tab b ON a.'id'=b.'id';
+查询最大条数：SELECT * FROM t_left_tab a LEFT JOIN t_right_tab b ON 1=1;
+
+结论：数据库左连接和右连接的区别：主表不一样，通过左连接和右连接，最小条数为3（记录条数最小的记录数），最大条数为12（a*b）
+
+
+
+44.UIView不能接受触摸事件的三种情况
+userInteractionEnabled = NO,UIImageView默认不能接受触摸userInteractionEnabled=NO，
+hidden = Yes
+alpha < 0.01
+
+
+
+45.控制器View的生命周期
+1.loadView
+2.ViewDidLoad
+3.ViewWillAppear
+4.ViewWill/DidLayoutSubViews
+5.ViewDidAppear
+6.ViewWillDisappear
+7.ViewDidDisappear
+8.dealloc
+
+
+46.动态绑定
+将调用方法的确定由编译时推迟到了运行时
+
+
+47.APP需要请求大量的数据，给服务器发送请求，但是服务器卡住了如何操作
+1.设置请求超时
+2.提醒用户超时
+3.根据用户操作再次请求数据
+
+
+48.RunLoop定时源和输入源
+1.你创建的程序不需要显式的创建RunLoop，每个线程，包括程序的主线程都有与之对应的RunLoop对象，主线程会自动创建并运行RunLoop
+
+1.访问控制
+
+@public:
+将实例变量设置为可以被任何对象访问。
+@private:
+将实例变量设置为只能在声明它的类以及与该类类型相同的其他实例中访问。
+@package:
+将实例变量设置为可以被其他类实例和函数访问，但是在其所属程序包的外部，它会被视为私有变量。这种作用范围可以用于库或框架类。
+@protected:
+这是实例变量默认的作用范围，将实例变量设置为只能在声明它的类以及子类的实例方法中能访问。
+
+2.属性和实例变量的区别
+属性无法直接访问对象的内部状态，但提供了访问这类数据的方便机制（即读取和设置方法）,因为可以含有其他逻辑。属性的实例变量作用范围为private。
+
+3.属性特性
+atomic  默认设置
+nonatomic
+
+assign  默认设置
+retain
+copy
+strong  默认设置
+weak
+
+readwrite  默认设置
+readonly
+
+getter=
+setter=
+
+
+@synthesize:关键字，可以使编译器自动生成属性定义
+@dynamic:关键字，阻止编译器自动生成访问器方法
+一般而言，我们可以通过set/get方法和点语法这两种机制来访问属性
+如果与属性关联的对象还没有完全创建好，就不要使用这些机制，而应该使用支持属性的实例变量，这意味着在init方法和dealloc方法中直接访问实例变量。
+
+协议使OC支持多继承规范的概念。在协议中声明的方法和属性可以由任何类实现使用协议可以在无继承关系的类中实现通用行为。
+
+
+分类可以在不尽兴子类化的情况下，为已经存在的类添加功能。分类中的方法会成为类的组成部门，并且会被子类继承。分类的作用：
+1.扩展其他人定义的类
+2.替代子类
+3.将类的实现代码分发到多个源文件中
+
+
+扩展可以视为匿名的分类，扩展声明的方法必须在类的主实现块中实现，扩展还可以声明实例变量和属性。
+
+
+
+根类（基类）定义了类层次结构中该类下方所有类的公有接口和行为。Foundation框架提供了两个根类，NSProxy,NSObject.
+NSProxy是专门用于实现代理的类。
+NSObject是大多数OC类层次结构的根类。
+这两个根类都采用NSObject协议，该协议声明了所有OC对象的公用方法。
+
+为了避免initialize方法vein调用两次的情况，应使用验证调用者为目标类而非父类的逻辑。
++(void)initialize
+{
+if (self == [BasicGreeter class]) {
+//初始化逻辑
+}
+}
+
+NSProxy声明了必须由子类实现的两个方法：
+-(NSMethodSignature *)methodSignatureForSelector:(SEL)sel;
+-(void)forwardInvocation:(NSInvocation *)invocation;
+此外，NSProxy的子类必须声明并且实现至少一个init方法
+
+
+load加载和initialize方法的区别：
+1.load方法会在initialize方法的调用操作之前，类被加载之后立即被调用。实际上，对于以静态方式链接的类（可执行程序的组成部分），调用load方法的操作在调用main（）函数的操作之前。如果load方法是在可选包中的类实现的，那么当该包以动态方式被加载时load方法就会执行。当该方法被调用时，程序的自动释放池通常还不存在，其他类可能还没有加载。
+2.load方法可以由类实现也可以由分类实现。事实上，一个类中的所有分类都可以实现其本身的load方法，initialize方法永远不能在分类实现。
+3.load方法在实现的前提下，一定会被调用且仅调用一次。initializet如果类没有被使用，那么该方法就不会被调用。
+
+
+/*
+http://mobile.hktsc.cc/services/list?appPage=serviceList&brandId=1
+
+URL的组成
+scheme/protocol   :传输协议,http,https
+credentials(可选)  :user:password@
+hostname          : 资源服务器的主机地址
+port（可选）        :端口号，指定客户端应该连接哪个端口，如果忽略则使用默认端口。有时候处于安全或其他考虑，
+可以在服务器上对端口进行重定义，即采用非标准端口号，此时，URL中就不能省略端口这一项。
+path               :绝对路径，由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或者文件地址。
+query(可选)         :查询，URL最后部分是查询字符串，这个值是从path用？隔开的，多个参数每个用&分割。查询字符串不能包含
+回车空格换行字符。
+fragment           :信息片段，字符串。用于指定网络资源中的片段。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。
+
+
+NSURL *url = [NSURL URLWithString:@"http://www.baidu.com/services/list?appPage=serviceList&brandId=1"];
+NSLog(@"scheme:%@------user:%@-----password:%@-----host:%@-----port:%@------path:%@-----query:%@",url.scheme,url.user,url.password,url.host,url.port,url.path,url.query);
+打印结果：
+scheme:http------user:(null)-----password:(null)-----host:www.baidu.com-----port:(null)------path:/services/list-----query:appPage=serviceList&brandId=1
+*/
+
+
+/*
+Model -----  View   ---- ViewController
+
+Model ----- View + ViewController
+
+Model ----- View + ViewController + ViewModel(将model转换成view可以展示的东西)
+优势：能减少ViewController的复杂性并使得表示逻辑更易于测试
+1.MVVM可以兼容你的MVC代码
+2.MVVM增加你的代码的可测试性
+3.MVVM配合一个绑定机制效果更好
+
+
+NSNumber实例为标量值（整数型，浮点型和布尔型值）提供了对象封装器。
+NSNumber常量对象是通过标量值而不是表达式创建的。还应注意，NSNumber常量实在运行程序是被求值的，因此他们不是编译时常数，因而无法用于初始化静态变量和全局变量。下面的语句无法编译。
+
+
+*/
+
+/*
+static修饰局部变量
+static修饰局部变量，改变变量的存储方式，使变量成为局部的静态变量。
+即编译时就为变量分配内存，直到程序退出才释放存储变量。这样，使得该局部变量有记忆功能，可以记忆上次的数据，不过由于仍是局部变量，因而只能在代码块内部使用。
+static修饰外部变量
+外部变量指在代码块{}之外定义的变量，它缺醒为静态变量，编译时分配内存，程序结束时才释放内存单元。同时，其作用域很广，整个文件都有效，甚至别的文件也能引用它。为了限制某些局部变量的作用域，使其指在本文件中有效，而不能被其他文件引用，可以用static关键字对其作出声明。
+
+*/
+
+
+/*
+id类型是所有OC类型对象，用于存储对任何OC对象的引用
+id仅是一个指向objc_ocject标识符的C语言结构的指针
+
+
+typedef struct objc_object{
+Class isa;
+}*id;
+
+
+typedef struct objc_class *Class;
+Class数据类型是一种指针，这种指针指向带objc_class标识符的不透明类型。
+当编译器解析OC对象的代码时，会生成创建运行时对象类型的代码，即objc_object类型。
+
+
+struct objc_object{
+Class isa;
+}
+objc_object类型含有一个变量，该变量的类型是Class，名称为isa；换言之，它是一个指向objc_class类型变量的指针。
+
+*/
+
+
+/*
+OC保留字
+变量范围：
+块，在语句块中声明的变量拥有块范围。
+文件，拥有文件范围的变量只能在声明它的文件中可见于被访问。
+函数，在函数/方法中声明的变量拥有函数范围。
+
+
+*/
+
+
+/*
+键值编码（KVC）可以通过名称（key）间接访问对象的属性，而无须使用访问方法支持实例变量。
+键值观察（KVO）能够使对象在其他对象的属性发生更改时获得通知。
+
+与标准的属性访问方法相比，KVC有什么好处：
+1.基于配置的属性访问。通过KVC可以使用由参数驱动的通用API访问属性。
+2.降低耦合性。通过KVC访问属性可以降低各个软件组件之间的耦合性，从而提高软件的可维护性。
+3.简化代码。通过KVC可以减少代码量。
+
+非正式协议NSKeyValueCoding
+
+KVC通过依赖于属性方法命名约定的一系列搜索模式，以setValue:name forKey为例
+1.先搜索setName:的访问方法
+2.寻找名称匹配_name,_isName,name,isName的实例变量。
+3.如果找到了匹配的访问方法或者实例变量，setValue:name forKey方法就会被用于设置值。如有必要，该值会被封装。
+4.如果没有找到适当的访问方法或者实例变量，接受对象的setValue:forUndefinedKey:就会被调用.
+
+键值检验：
+validateValue检验设置的对象值是否合法。
+
+键值编码的集合操作符：
+
+键值观察（KVO）是一种通知机制，它使对象能够在其他对象的属性发生更改时获得通知。是对观察者设计模式的一种实现
+
+键值编码要点：
+1.通过键值编码可以通过名称（Key）间接访问和操作对象的属性，而无需通过访问方法或者属性的支持实例变量。
+2.通过键值编码可以使用能够在程序运行时变化的字符串访问属性，这位访问和操作对象状态提供了
+更为动态而灵活的方式。其主要优点包括降低耦合度，能够执行基于配置的属性访问操作和简化代码。
+3.键值编码使用键和键路径访问属性。键是用于表示指定属性的字符串。键路径指示了对象的属性序列，用于标识指定属性的遍历路径。KVC API支持对一个对象中的一个或多个属性进行访问。属性的类型可以为基元，C语言数据结构和对象类型（包括集合）,Objective-C会使用相应的对象类型，自动封装和解封基元和C语言结构。
+4.非正式协议NSKeyValueCoding定义了通过名称/键间接访问对象的机制。该协议声明了键值编码API，以及构成这些API的类，实例方法和常量值。使用这些方法可以获取和设置属性值。检验属性值，以及为了获取属性值改变键值编码方法的默认行为。
+5.键值编码使用了一种机制。该机制将键与相应的属性访问方法或属性支持变量对应起来。这种机制提供了一系列依赖于属性访问方法命名约定的标准搜索模式。
+6.键值编码还有检验属性值的基础设施。KVC检验机制由一系列API和自定义属性检验方法标准约定构成。可以直接调用KVC检验方法，也可以间接调用KVC检验方法。
+7.使用键值编码集合操作符，可以通过键路径点表达式对集合元素执行操作。
+8.通过键值观察模式可以使对象在其他的对象属性发生变化时获得通知，时机上，它是对观察者设计模式的实现，并且非常多的软件库和框架都实现了它。时机上，它使MVC设计模式的关键组件，而后者是Cocoa和Cocoa Touch框架的核心组件。键值观察以键值编码为基础。
+9.键值观察的优点非常多，其中包括分割观察者和被观察者，提供框架级支持和功能齐全的API集合。
+10.自动属性更改通知功能是由NSObject类中默认实现的KVO代码实现的，手动属性更该通知功能为属性更改通知的发送操作提供了更精细的控制，去除了不必要的操作（如新的属性值与旧的属性值相同时），还能够对通知进行分组。
+11.
+
+
+
+
+
+*/
+
+/*
+1.The app register for push notifications,The OS asks APNS for a device token
+2.The app receives the device token
+3.The app send the token to your server
+4.When something interesting happens,your server sends a push notification to the APNS erver
+5.APNS server sends the push notification to your app.
+*/
+
+/*
+UIView与CALayer
+UIView继承于UIResponder,(UIResponder继承于NSObject)
+CALayer继承于NSObject
+区别在于UIResponder这一层，UIView可以响应事件，而Layer不可以
+UIView对于绘图和动画都是layer完成的，UIView只是呈现Layer和处理交互响应事件
+
+*/
+
+/*
+SDWebImage的加载逻辑：
+1根据URL查看是否内存中是否有图片缓存，如果有的话就回调block将图片返回
+2如果内存中没有，就去异步查找磁盘中是否有图片，如果从磁盘中读取到图片，将图片添加到内存缓存中，回调block将图片返回
+3内存和磁盘中都没有图片缓存，创建网络请求下载图片
+4图片下载完成后，数据完成后先做图片解码操作，将图片添加到内存缓存和磁盘缓存，回调block将图片返回，图片数据写入磁盘缓存中是异步操作
+*/
+
+
+
+/*
+
+*/
+
+

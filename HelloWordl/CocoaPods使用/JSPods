@@ -1,0 +1,33 @@
+
+1.CocoaPods的安装
+$ sudo gem install cocoapods
+
+2.CocoaPods换源
+gem sources --remove http://ruby.taobao.org/
+
+3.CocoaPods修改source
+gem sources -a http://ruby.taobao.org/
+
+4.查看CocoaPods源
+gem source -l
+
+5.更新pod
+pod setup
+
+6.CocoaPods版本查看
+$ pod --version
+
+7.pod search AFNetworking
+
+8.pod install
+
+9.pod update
+
+10.pod install --verbose --no-repo-update
+不更新repo仓库
+
+11. pod repo update
+
+
+
+
