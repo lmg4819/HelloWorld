@@ -7,6 +7,7 @@
 //
 
 #import "JSTextContext.h"
+#import "Section49.h"
 
 @implementation JSTextContext
 
@@ -14,10 +15,15 @@
 {
     self = [super init];
     if (self) {
+        
+        Section49 *sec49 = [Section49 new];
         [self findRepeatElementFromArray:@[@2,@3,@1,@0,@2,@5,@3]];
+        
     }
     return self;
 }
+
+
 
 
 /*

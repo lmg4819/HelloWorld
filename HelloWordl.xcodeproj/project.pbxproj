@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920AAC56227EB3CD00362F56 /* Section49.m in Sources */ = {isa = PBXBuildFile; fileRef = 920AAC55227EB3CD00362F56 /* Section49.m */; };
+		920AAC5A227EB60400362F56 /* Section50.m in Sources */ = {isa = PBXBuildFile; fileRef = 920AAC59227EB60400362F56 /* Section50.m */; };
+		920AAC72227EDE8400362F56 /* C语言类型 in Resources */ = {isa = PBXBuildFile; fileRef = 920AAC71227EDE8400362F56 /* C语言类型 */; };
 		920D2A742277DD8C0040F8EE /* 剑指offer in Resources */ = {isa = PBXBuildFile; fileRef = 920D2A732277DD8C0040F8EE /* 剑指offer */; };
 		920D2A7C2277E8DA0040F8EE /* JSTextContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 920D2A7B2277E8DA0040F8EE /* JSTextContext.m */; };
 		920D2A85227816110040F8EE /* JSNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 920D2A84227816110040F8EE /* JSNetworking.m */; };
@@ -35,6 +38,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		920AAC54227EB3CD00362F56 /* Section49.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Section49.h; sourceTree = "<group>"; };
+		920AAC55227EB3CD00362F56 /* Section49.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Section49.m; sourceTree = "<group>"; };
+		920AAC58227EB60400362F56 /* Section50.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Section50.h; sourceTree = "<group>"; };
+		920AAC59227EB60400362F56 /* Section50.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Section50.m; sourceTree = "<group>"; };
+		920AAC71227EDE8400362F56 /* C语言类型 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "C语言类型"; sourceTree = "<group>"; };
 		920D2A732277DD8C0040F8EE /* 剑指offer */ = {isa = PBXFileReference; lastKnownFileType = text; path = "剑指offer"; sourceTree = "<group>"; };
 		920D2A7A2277E8DA0040F8EE /* JSTextContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTextContext.h; sourceTree = "<group>"; };
 		920D2A7B2277E8DA0040F8EE /* JSTextContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTextContext.m; sourceTree = "<group>"; };
@@ -90,9 +98,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		920AAC52227EB39900362F56 /* 算法题 */ = {
+			isa = PBXGroup;
+			children = (
+				920AAC57227EB5E600362F56 /* 50.第一个只出现一次的字符 */,
+				920AAC53227EB3AB00362F56 /* 49.丑数 */,
+			);
+			path = "算法题";
+			sourceTree = "<group>";
+		};
+		920AAC53227EB3AB00362F56 /* 49.丑数 */ = {
+			isa = PBXGroup;
+			children = (
+				920AAC54227EB3CD00362F56 /* Section49.h */,
+				920AAC55227EB3CD00362F56 /* Section49.m */,
+			);
+			path = "49.丑数";
+			sourceTree = "<group>";
+		};
+		920AAC57227EB5E600362F56 /* 50.第一个只出现一次的字符 */ = {
+			isa = PBXGroup;
+			children = (
+				920AAC58227EB60400362F56 /* Section50.h */,
+				920AAC59227EB60400362F56 /* Section50.m */,
+			);
+			path = "50.第一个只出现一次的字符";
+			sourceTree = "<group>";
+		};
+		920AAC70227EDE7400362F56 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				920AAC71227EDE8400362F56 /* C语言类型 */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		920D2A722277DD770040F8EE /* 剑指offer  */ = {
 			isa = PBXGroup;
 			children = (
+				920AAC52227EB39900362F56 /* 算法题 */,
 				920D2A7A2277E8DA0040F8EE /* JSTextContext.h */,
 				920D2A7B2277E8DA0040F8EE /* JSTextContext.m */,
 				920D2A732277DD8C0040F8EE /* 剑指offer */,
@@ -204,6 +248,7 @@
 		920D36CF2275745A00D63241 /* HelloWordl */ = {
 			isa = PBXGroup;
 			children = (
+				920AAC70227EDE7400362F56 /* New Group */,
 				920D2AA422782B0E0040F8EE /* 架构相关 */,
 				920D2A9A227826230040F8EE /* 算法与数据结构 */,
 				920D2A97227825E30040F8EE /* 准备工作 */,
@@ -342,6 +387,7 @@
 				920D2A99227825FE0040F8EE /* Prepare in Resources */,
 				920D2A9F227826BD0040F8EE /* 知识点总结 in Resources */,
 				920D2A96227825A60040F8EE /* block in Resources */,
+				920AAC72227EDE8400362F56 /* C语言类型 in Resources */,
 				920D2A8722781E750040F8EE /* 数据加密 in Resources */,
 				920D36DD2275745C00D63241 /* LaunchScreen.storyboard in Resources */,
 				924A9DCF22770539003A0226 /* 面试题总结文件 in Resources */,
@@ -360,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				920AAC5A227EB60400362F56 /* Section50.m in Sources */,
 				920D2AAD227832540040F8EE /* JSSortAlgorithm.m in Sources */,
 				920D36D52275745A00D63241 /* ViewController.m in Sources */,
 				920D2A8C2278207E0040F8EE /* JSMemory.m in Sources */,
@@ -374,6 +421,7 @@
 				924A9DCD2276F863003A0226 /* JSRunTime.m in Sources */,
 				9233BA502276D573009C19D3 /* JSThread.m in Sources */,
 				920D36D22275745A00D63241 /* AppDelegate.m in Sources */,
+				920AAC56227EB3CD00362F56 /* Section49.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
