@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "BinaryTreeNode.h"
 
 @interface AppDelegate ()
 
@@ -14,12 +15,37 @@
 
 @implementation AppDelegate
 
-
+/*
+             4
+      2           6
+   1    3      5     7
+ 
+ 
+ 
+ */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-
+    
+    BinaryTreeNode *treeNode = [BinaryTree createTreeWithValues:@[@4,@2,@1,@3,@6,@5,@7]];
+    NSMutableArray *results = [NSMutableArray array];
+//    [BinaryTree inOrderTraverseTree:treeNode handle:^(BinaryTreeNode * _Nonnull treeNode) {
+//        [results addObject:@(treeNode.value)];
+//    }];
+    
+    BinaryTreeNode *invertNode = [BinaryTree invertBinaryTree:treeNode];
+    
+    [BinaryTree levelTraverseTree:invertNode handle:^(BinaryTreeNode * _Nonnull treeNode) {
+        [results addObject:@(treeNode.value)];
+    }];
+    
+    NSLog(@"层序遍历结果：%@", [results componentsJoinedByString:@","]);
+    
+    
+    
     return YES;
 }
+
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
