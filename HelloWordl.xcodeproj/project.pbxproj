@@ -56,6 +56,7 @@
 		924A9DCA2276E038003A0226 /* JSLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 924A9DC82276E038003A0226 /* JSLock.m */; };
 		924A9DCD2276F863003A0226 /* JSRunTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 924A9DCC2276F863003A0226 /* JSRunTime.m */; };
 		924A9DCF22770539003A0226 /* 面试题总结文件 in Resources */ = {isa = PBXBuildFile; fileRef = 924A9DCE22770539003A0226 /* 面试题总结文件 */; };
+		92C6EB9A228406CD004BCD84 /* YYCacheAyalyse.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C6EB99228406CD004BCD84 /* YYCacheAyalyse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +149,8 @@
 		924A9DCB2276F863003A0226 /* JSRunTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRunTime.h; sourceTree = "<group>"; };
 		924A9DCC2276F863003A0226 /* JSRunTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRunTime.m; sourceTree = "<group>"; };
 		924A9DCE22770539003A0226 /* 面试题总结文件 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "面试题总结文件"; sourceTree = "<group>"; };
+		92C6EB98228406CD004BCD84 /* YYCacheAyalyse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYCacheAyalyse.h; sourceTree = "<group>"; };
+		92C6EB99228406CD004BCD84 /* YYCacheAyalyse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYCacheAyalyse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +380,8 @@
 				920CE8F122817B84007C7FC4 /* YYMemoryCache.m */,
 				920CE8F322817B97007C7FC4 /* YYCache.h */,
 				920CE8F422817B97007C7FC4 /* YYCache.m */,
+				92C6EB98228406CD004BCD84 /* YYCacheAyalyse.h */,
+				92C6EB99228406CD004BCD84 /* YYCacheAyalyse.m */,
 			);
 			path = "数据缓存";
 			sourceTree = "<group>";
@@ -682,6 +687,7 @@
 				920D2A8F2278244B0040F8EE /* JSCompiler.m in Sources */,
 				920D2A85227816110040F8EE /* JSNetworking.m in Sources */,
 				920CE8F222817B84007C7FC4 /* YYMemoryCache.m in Sources */,
+				92C6EB9A228406CD004BCD84 /* YYCacheAyalyse.m in Sources */,
 				924A9DCD2276F863003A0226 /* JSRunTime.m in Sources */,
 				9233BA502276D573009C19D3 /* JSThread.m in Sources */,
 				920B9029227FDDD3001C9F61 /* Section54.m in Sources */,

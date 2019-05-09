@@ -36,8 +36,8 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue(){
     CFMutableDictionaryRef _dic;
     NSUInteger _totalCount;
     NSUInteger _totalCost;
-    _YYLinkedMapNode *_head;
-    _YYLinkedMapNode *_tail;
+    _YYLinkedMapNode *_head;//MRU,最常用节点
+    _YYLinkedMapNode *_tail;//LRU,最少要节点
     BOOL _releaseOnMainThread;
     BOOL _releaseAsynchronously;
 }
@@ -133,6 +133,10 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue(){
         _dic = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
         
         if (_releaseAsynchronously) {
+            /*
+             单个对象的销毁虽然消耗资源不多，但累计起来也是不容忽视的。特别当容器类持有大量对象时，其销毁时的资源消耗就特别明显。
+             同样的，如果对象可以放到后台线程中去，那就挪到后台线程中去。把对象捕获到block中，然后扔到后台线程去随便发个消息以避免编译器警告，就可以让对象在后台线程销毁了
+             */
             dispatch_queue_t queue = _releaseOnMainThread ? dispatch_get_main_queue() : YYMemoryCacheGetReleaseQueue();
             dispatch_async(queue, ^{
                 CFRelease(holder); // hold and release in specified queue

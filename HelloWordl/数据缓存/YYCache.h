@@ -40,6 +40,23 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 + (instancetype)new UNAVAILABLE_ATTRIBUTE;
 
+#pragma mark -Access Methods
+
+- (BOOL)containsObjectForKey:(NSString *)key;
+- (void)containsObjectForKey:(NSString *)key withBlock:(nonnull void (^)(NSString *key, BOOL contains))block;
+
+- (nullable id<NSCoding>)objectForKey:(NSString *)key;
+- (void)objectForKey:(NSString *)key withBlock:(nullable void(^)(NSString *key,id<NSCoding> object))block;
+
+- (void)setObject:(nullable id<NSCoding>)object forKey:(NSString *)key;
+- (void)setObject:(nullable id<NSCoding>)object forKey:(NSString *)key withBlock:(nonnull void (^)(void))block;
+
+- (void)removeObjectForKey:(NSString *)key;
+- (void)removeObjectForKey:(NSString *)key withBlock:(nonnull void (^)(NSString *key))block;
+
+- (void)removeAllObjects;
+- (void)removeAllObjectsWithBlock:(void(^)(void))block;
+- (void)removeAllObjectsWithProgressBlock:(nullable void(^)(int removedCount,int totalCount))progress endBlock:(nullable void(^)(BOOL error))end;
 
 
 @end

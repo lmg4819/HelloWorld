@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSUInteger countLimit;
 @property NSUInteger costLimit;
 @property NSTimeInterval ageLimit;
+/*
+ The default value is 5s
+ */
 @property NSTimeInterval autoTrimInterval;
 
 /**
