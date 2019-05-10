@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920A86512285695A0025A02A /* 性能检测 in Resources */ = {isa = PBXBuildFile; fileRef = 920A86502285695A0025A02A /* 性能检测 */; };
+		920A8653228570030025A02A /* 设计模式 in Resources */ = {isa = PBXBuildFile; fileRef = 920A8652228570030025A02A /* 设计模式 */; };
 		920AAC56227EB3CD00362F56 /* Section49.m in Sources */ = {isa = PBXBuildFile; fileRef = 920AAC55227EB3CD00362F56 /* Section49.m */; };
 		920AAC5A227EB60400362F56 /* Section50.m in Sources */ = {isa = PBXBuildFile; fileRef = 920AAC59227EB60400362F56 /* Section50.m */; };
 		920AAC72227EDE8400362F56 /* C语言类型 in Resources */ = {isa = PBXBuildFile; fileRef = 920AAC71227EDE8400362F56 /* C语言类型 */; };
@@ -60,6 +62,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		920A86502285695A0025A02A /* 性能检测 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "性能检测"; sourceTree = "<group>"; };
+		920A8652228570030025A02A /* 设计模式 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "设计模式"; sourceTree = "<group>"; };
 		920AAC54227EB3CD00362F56 /* Section49.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Section49.h; sourceTree = "<group>"; };
 		920AAC55227EB3CD00362F56 /* Section49.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Section49.m; sourceTree = "<group>"; };
 		920AAC58227EB60400362F56 /* Section50.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Section50.h; sourceTree = "<group>"; };
@@ -164,6 +168,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		920A864F2285693A0025A02A /* 应用开发知识总结 */ = {
+			isa = PBXGroup;
+			children = (
+				920A86502285695A0025A02A /* 性能检测 */,
+				920A8652228570030025A02A /* 设计模式 */,
+			);
+			path = "应用开发知识总结";
+			sourceTree = "<group>";
+		};
 		920AAC52227EB39900362F56 /* 算法题 */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,6 +514,7 @@
 		920D36CF2275745A00D63241 /* HelloWordl */ = {
 			isa = PBXGroup;
 			children = (
+				920A864F2285693A0025A02A /* 应用开发知识总结 */,
 				920CE8E922817B4A007C7FC4 /* 数据缓存 */,
 				920AAC70227EDE7400362F56 /* C语言 */,
 				920D2AA422782B0E0040F8EE /* 架构相关 */,
@@ -646,10 +660,12 @@
 				920D36DD2275745C00D63241 /* LaunchScreen.storyboard in Resources */,
 				924A9DCF22770539003A0226 /* 面试题总结文件 in Resources */,
 				920D36DA2275745C00D63241 /* Assets.xcassets in Resources */,
+				920A86512285695A0025A02A /* 性能检测 in Resources */,
 				920D36D82275745A00D63241 /* Main.storyboard in Resources */,
 				920D2AA622782B230040F8EE /* 架构 in Resources */,
 				920D2A742277DD8C0040F8EE /* 剑指offer in Resources */,
 				920D2A922278255A0040F8EE /* JSPods in Resources */,
+				920A8653228570030025A02A /* 设计模式 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

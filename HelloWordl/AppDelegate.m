@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "BinaryTreeNode.h"
+#import "YYDiskCache.h"
 
 @interface AppDelegate ()
 
@@ -39,7 +40,13 @@
     }];
     
     NSLog(@"层序遍历结果：%@", [results componentsJoinedByString:@","]);
-    
+    @try {
+        
+    } @catch (NSException *exception) {
+        NSLog(@"---%@---",exception);
+    } @finally {
+        
+    }
     
     
     return YES;
