@@ -1,30 +1,5 @@
 
 
-
-1.常用的设计模式：
-1.单例模式
-2.委托模式
-3.MVC
-4.组合模式
-5.观察者模式
-6.工厂模式
-
-2.MVC的理解：
-Model（数据管理者） View（数据展示者） Controller（数据加工者）
-Model通过KVO和NSNotification和Controller进行通信
-View通过Target-Action和Delegate和Controller进行通信
-Model和View不直接通信
-
-3.MVC与MVVM的区别：
-MVC又被称为Massive-V-C，其本质是给Controller减负，将一些弱业务逻辑放到VM中处理，
-在iOS开发中，MVC是一切设计模式的基础
-Model  View Controler
-Model  View   ViewModel
-
-4.TCP和UDP的区别：
-TCP是面相连接的，数据可靠，速度慢
-UDP是无连接的，速度快，但是会丢包
-
 5.TCP的三次握手
 1。客服端发送自己的syn包到服务器，此时处于syn_send状态
 2。服务器收到客户端的syn包，必须确认客户的syn同时自己也发送一个syn包，即syn+ack包，此时服务器进入syn_recv状态。
@@ -39,110 +14,16 @@ armv7    3gs--4S
 armv7s   5/5c
 arm64    5s---最新
 
-7.用过sqlite吗？读写是分线程的吗？遇见过死锁没？如何解决的？
-用过，使用FMDB框架，丢给FMDatabaseQueue或者加锁
 
 
-8.请简单的介绍下APNS发送系统消息的机制
-1.应用在通知中心注册，由iOS系统向APNS服务器请求返回设备令牌（Device Token）
-2.应用程序接收到设备令牌并发送给自己的后台服务器
-3.后台服务器将要推送的内容和设备令牌发送给APNS服务器
-4.APNS根据设备令牌找到设备，在由iOS系统根据APPID把推送消息展示
-
-9.不用中间变量，用两种方法交换A，B的值
-a = a + b;
-b = a - b;
-a = a - b;
-可以完成对整形变量的交换，对于浮点型不行
-a = a^b;
-b = a^b;
-a = a^b;
-
-10.是否可以把比较耗时的操作发到NSNotificationCenter中
-首先必须明确通知在哪个线程中发出，那么处理接收到通知的方法也在这个线程中调用
-如果在异步线程发的通知，那么可以执行比较耗时的操作
-如果在主线程发的通知，那么就不可以执行比较耗时的操作。
 
 
-11.runtime如何实现weak属性
-weak策略表明该属性定义了一种非拥有关系。
-为这种属性赋值时，即不保留新值,也不释放旧值，此特质同assign类似，然后再属性所指向的对象遭到摧毁时，属性值也会清空（nil）
-runtime如何实现weak变量的自动置为nil
-runtime对注册的类会进行布局，会将weak对象放进hash表中。用weak指向的对象内存地址作为key，指向weak的所有指针数组为value，当对象的引用计数为0时会调用对象的dealloc方法，假设对象的内存地址为a，那么就以a为key，在这个weak hash表中搜索，找到weak指针的数组并遍历其中的所有元素，将其指向nil.
 
-12.weak属性需要在dealloc中置为nil吗
-不需要
-
-13.一个OC对象如何进行内存布局
-对象方法列表
-成员变量列表
-属性列表
-
-
-OC对象的结构图
-ISA指针
-根类的实例变量
-倒数第二层父类的实例变量
-。。。
-父类的实例变量
-类的实例变量
-
-
-14.一个OC对象的isa指针指向什么，有什么作用
-每一个对象内部都有一个isa指针，这个指针是指向他的真实类型
-根据这个指针就能知道将来调用哪个类的方法
-
-
-15.下面的代码输出什么
-self是类的隐藏参数
-super是编译器指示符，指向当前调用方法的这个类的实例
 
 16.runtime如何通过selector来找到的IMP地址？
-每一个类对象都有一个对象方法列表（对象方法缓存），类方法列表是存放在类对象中isa指针
-指向的元类对象中，方法列表中每个方法结构体中记录着方法的名称，方法实现，以及参数类型，
-其实selector本质就是方法名称，通过方法名称就可以在方法列表中找到对应的方法实现。
-当我们发送一个消息给一个NSObject对象时，这条消息会在对象的类对象方法列表里查找，当我们发送一个消息给一个类时，这条消息会在类的元类对象的方法列表中去查找。
 
 
-17.使用 runtime Associate方法关联的对象，需要在主对象 dealloc的时候释放么？
-不需要
 
-
-18._objc_msgForward函数是做什么的？直接调用它会发生什么
-_objc_msgForward是IMP类型，用于消息转发的。当向一个发送消息发送一条消息，但它并没有实现的时候，_objc_msgForward会尝试做消息转发。JSPatch就是直接调用_objc_msgForward来实现其核心功能的。
-
-
-19.能否想编译后的类中增加实例变量？能否向运行时的类中添加实例变量，为什么？
-不能像编译后的类中增加实例变量，因为编译后的类在runtime中已经注册，类的实例变量的b链表和尺大小都是固定的，能想运行时的类中添加实例变量，在allocate和register之间调用即可
-
-
-20.RunLoop和线程之间有什么关系
-每条线程都有一个唯一的RunLoop对象与之对应的，主线程的RunLoop是自动创建并启动
-子线程的RunLoop需要手动创建，在子线程中调用[NSRunLoop currentRunLoop](懒加载，只创建一次)
-，获得RunLoop对象后要调用Run方法来启动一个运行循环
-
-
-21.RunLoop的Mode作用是什么
-用来控制一些特定操作只能在指定模式下运行，mode来控制运行时机。
-系统默认注册了5个Mode
-1.kCFRunLoopDefaultMode:App的默认Mode
-2。UITrackingRunLoopMode:界面跟踪Mode，用于ScrollView跟踪触摸滑动，保证界面滑动时不受其他Mode影响
-3。kCFRunLoopCommonModes:这是一个标记Mode，不是一个真正的Mode，事件可以运行在所有标有common modes标记的模式中，对应OC的NSRunLoopCommonModes，带有common modes标记的模式：
-UITrachingRunLoopMode和kCFRunLoopDefaultMode
-
-
-22.以+scheduledTimerWithTimeInterval...的方式触发的 timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？
-在主线程中以scheduledTimerWithTimeInterval的方式触发的Timer默认是运行在NSDefaultRunLoopMode模式下的，当滑动页面上的列表时，进入了UITrackingRunLoopMode模式，这是Timer就会
-停止，可以修改Timer的运行模式为UIRunLoopCommonModes，这时定时器就可以一直运行了。
-
-
-23.协议在OC中和Java中的区别
-Java的接口中声明的方法必须都实现
-OC中的protocol中声明的方法分为optional和required
-
-24.什么是KVC和KVO
-KVC是键值编码，是一种通过字符串间接访问对象的属性的方式
-KVO是键值监听，可以监听一个对象属性值的改变
 
 
 25.delegate的作用是什么
@@ -167,12 +48,6 @@ KVO是键值监听，可以监听一个对象属性值的改变
 
 29.什么是谓词
 可以以一定条件来过滤数组，字典等集合数据，也能用在CoreData的数据查询中
-
-30.多线程的底层实现
-1.C语言的POSIX接口：#include <pthread.h>
-2.OC的NSThread
-3.C语言的GCD接口
-4.OC的NSOperation和NSOperationQueue
 
 
 31.线程间怎么通信
@@ -233,22 +108,6 @@ hidden = Yes
 alpha < 0.01
 
 
-
-45.控制器View的生命周期
-1.loadView
-2.ViewDidLoad
-3.ViewWillAppear
-4.ViewWill/DidLayoutSubViews
-5.ViewDidAppear
-6.ViewWillDisappear
-7.ViewDidDisappear
-8.dealloc
-
-
-46.动态绑定
-将调用方法的确定由编译时推迟到了运行时
-
-
 47.APP需要请求大量的数据，给服务器发送请求，但是服务器卡住了如何操作
 1.设置请求超时
 2.提醒用户超时
@@ -257,37 +116,6 @@ alpha < 0.01
 
 48.RunLoop定时源和输入源
 1.你创建的程序不需要显式的创建RunLoop，每个线程，包括程序的主线程都有与之对应的RunLoop对象，主线程会自动创建并运行RunLoop
-
-1.访问控制
-
-@public:
-将实例变量设置为可以被任何对象访问。
-@private:
-将实例变量设置为只能在声明它的类以及与该类类型相同的其他实例中访问。
-@package:
-将实例变量设置为可以被其他类实例和函数访问，但是在其所属程序包的外部，它会被视为私有变量。这种作用范围可以用于库或框架类。
-@protected:
-这是实例变量默认的作用范围，将实例变量设置为只能在声明它的类以及子类的实例方法中能访问。
-
-2.属性和实例变量的区别
-属性无法直接访问对象的内部状态，但提供了访问这类数据的方便机制（即读取和设置方法）,因为可以含有其他逻辑。属性的实例变量作用范围为private。
-
-3.属性特性
-atomic  默认设置
-nonatomic
-
-assign  默认设置
-retain
-copy
-strong  默认设置
-weak
-
-readwrite  默认设置
-readonly
-
-getter=
-setter=
-
 
 @synthesize:关键字，可以使编译器自动生成属性定义
 @dynamic:关键字，阻止编译器自动生成访问器方法
@@ -461,29 +289,10 @@ validateValue检验设置的对象值是否合法。
 */
 
 /*
-1.The app register for push notifications,The OS asks APNS for a device token
-2.The app receives the device token
-3.The app send the token to your server
-4.When something interesting happens,your server sends a push notification to the APNS erver
-5.APNS server sends the push notification to your app.
-*/
-
-/*
-UIView与CALayer
-UIView继承于UIResponder,(UIResponder继承于NSObject)
-CALayer继承于NSObject
-区别在于UIResponder这一层，UIView可以响应事件，而Layer不可以
-UIView对于绘图和动画都是layer完成的，UIView只是呈现Layer和处理交互响应事件
 
 */
 
-/*
-SDWebImage的加载逻辑：
-1根据URL查看是否内存中是否有图片缓存，如果有的话就回调block将图片返回
-2如果内存中没有，就去异步查找磁盘中是否有图片，如果从磁盘中读取到图片，将图片添加到内存缓存中，回调block将图片返回
-3内存和磁盘中都没有图片缓存，创建网络请求下载图片
-4图片下载完成后，数据完成后先做图片解码操作，将图片添加到内存缓存和磁盘缓存，回调block将图片返回，图片数据写入磁盘缓存中是异步操作
-*/
+
 
 
 

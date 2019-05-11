@@ -28,9 +28,23 @@
     JSTextContext *context =[JSTextContext new];
     self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(run1) object: nil];
     [self.thread start];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifica) name:@"hello" object:nil];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_global_queue(0, 0), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hello" object:nil userInfo:nil];
+    });
 
 }
 
+- (void)notifica{
+    NSLog(@"-----%@------",[NSThread currentThread]);
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    
+}
 - (void)run1
 {
 //    NSLog(@"----run1----");

@@ -9,312 +9,341 @@
 
 #ifndef ______h
 #define ______h
+/*
 1.设计模式是什么，你知道哪些设计模式，并简要概述
-设计模式是一种编码经验，就是用比较成熟的逻辑去处理某一种类型的事情
+设计模式是一种编程经验，就是用比较成熟的逻辑去处理某一种类型的事情
 iOS中常用的设计模式：
-单利模式：通知中心，文件管理器，NSUserDefault
-观察者模式：KVO，通知
-委托模式：代理
-中介者模式：URLRouter
-工厂模式：UIButton
-MVC模式：
-MVVM模式：
+1.单例模式：通知中心，文件管理器，NSUserDefault
+2.观察者模式，KVO，通知
+3.中介者模式，URLRooter
+4.工厂模式，UIButton
+5.组合模式，协议
+6.委托模式，代理
+7.MVC模式
+8.MVVM模式：
+9.策略模式，将算法封装起来，使彼此之间可以互相替换，使算法本身和使用算法的用户分割开来，互相独立
+
 
 2.MVC与MVVM的区别
-MVC是Model View Controller
-MVVM是Model View（View+Controller）VM（Controller中的业务逻辑和页面展示逻辑），是对Massive MVC的一种优化
+MVC是Model-View——Controller
+Model：数据模型
+View：视图展示
+Model通过KVO和NSNotification和Controller进行通信
+View通过Target-Action和Delegate和Controller进行通信
+Model和View不直接通信
+Controller：View和Model的中介，当View被用户操作的时候修改Model，当Model变化的时候刷新View，但是实际使用过程中，许多人会把业务逻辑和视图展示逻辑放到Controller，导致了Massive Controller
 
 
-3.#import和#include有什么区别
-#import是OC导入头文件的关键字，#include是C/C++导入头文件的关键字
+
+MVVM是为了解决Massive Controller的问题，给C减负，从C中抽出ViewModel，并将剩下的C合进V，形成新的Model---View----ViewModel
+
+
+3.#import和#include的区别
+#import是OC导入头文件的关键字，#include是C/C++语言的关键字
 #import可以防止重复导入头文件
-@class向前声明，告诉编译器某个类的声明，只有到了执行时，才会去查看类的实现文件，可以解决头文件的相互包含
-#import<>用来包含系统头文件，#import“”用来导入用户头文件
+@class是向前声明，告诉编译器某个类的声明，只有到了执行时，才会去查看类的实现文件，
+可以解决头文件的重复包含
+#import<>用来导入系统头文件，#import“”用来导入用户头文件，也可以导入系统头文件
 
 4.frame和bounds的区别
-frame是在父View中的相对坐标，bounds是自身的坐标
+
 
 5.Objective-C的类可以多重继承么？可以实现多个接口么？Category是什么？重写一个类的方法用继承好还是分类好？为什么？
-不可以，使用协议，分类，分类好，用分类去重写类的方法，仅对本category有效，不会影响本类与其他类的关系
+不可以，使用协议，分类，分类好，使用分类去重写类的方法，只对category有效，不会影响本类和其他类的关系
+
 
 6、@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的
-ivar+getter+setter
-编译器在编译器编写这些访问方法和生成对应的实例变量
+ivar+set+get  编译器在编译器生成实例变量和访问方法
+
 
 7.@property中有哪些属性关键字？/ @property 后面可以有哪些修饰符？
-1.原子性--- nonatomic 特质
-2.读/写权限---readwrite(读写)、readonly (只读)
-3.内存管理语义---assign、strong、 weak、unsafe_unretained、copy
-4.方法名---getter= 、setter=
-5.nonnull,nullable
+原子性 nonatomin/atomic
+读写 readonly/readwrite
+内存管理 copy/weak/strong/assign/unsafe_unretained
+读写方法 set/get
+空/非空  nonnull,nullable
 
 8.属性关键字 readwrite，readonly，assign，retain，copy，nonatomic 各是什么作用，在那种情况下用？
-1.readwrite可读可写，会自动生成setter和getter方法
-2.readonly只读，只会生成getter方法
-3.assign,赋值用于基本数据类型
-4.string，持有，强引用
-5.weak，弱引用，非拥有关系，用于对象，对象被销毁后，会自动置为nil
-6.copy，复制
-7.nonatomic，atomic和nonatomic的区别在于，系统自动生成的getter/setter方法不一样，对于atomic的属性，
-系统生成的set/get方法会保证set、get操作的完整性，而nonatomic就没有这个保证了，所以nonatomic的运行速度更快，
-不过atomic不能保证线程安全
-8.atomic
+readwrite 可读可写，会生成set和get方法
+readonly 只读，不会生成set方法，只有get方法
+assign  赋值，可以修饰基本数据类型，也可以修饰对象
+weak    赋值操作，非持有关系，对象销毁以后，指针会自动置为nil，只能修饰对象
+strong  持有关系，强引用
+copy    复制
+nonatomic 非原子性，atomic只能保证指针的安全，无法保证指向对象的线程安全,并且由于加锁开销较大，所以一般不使用atomic
 
 9.什么情况使用 weak 关键字，相比 assign 有什么不同？
-weak是用来解决循环引用的，assing可以用于普通数据类型，weak只能用于OC对象，
-weak指向的对象销毁时，会自动置为nil
+weak是用来解决循环引用的，两个都可以用来修饰OC对象，表示赋值，非持有关系，assign可以用来修饰普通数据类型
+weak指针指向的对象销毁时，会自动置为nil
 
 10.怎么用 copy 关键字？
-NSString、NSArray、NSDictionary 等等经常使用copy关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary；
-block 也经常使用 copy 关键字
+NSString，NSArray，NSDictionary等常用copy关键字，因为他们有对应的可变类型
+block也常用copy修饰
+
 
 11.用@property声明的 NSString / NSArray / NSDictionary 经常使用 copy 关键字，为什么？如果改用strong关键字，可能造成什么问题？
-使用copy的目的是为了防止把可变类型的对象赋值给不可变类型的对象时，可变类型的值发生改变会无意间篡改不可变对象的值
-
+使用copy是为了防止把可变对象赋值为不可变对象，可变类型的值发生改变无意间会篡改不可变对象的值
 
 12.浅拷贝和深拷贝的区别？
-深拷贝拷贝对象
-浅拷贝拷贝指针
+深拷贝拷贝对象，浅拷贝拷贝指针
 
 
 13.系统对象的 copy 与 mutableCopy 方法
-copy返回的是不可变对象
-mutableCopy返回的是可变对象类型
-只有对不可变的对象进行copy才是浅拷贝，其他都是深拷贝
+copy生成的是不可变对象，mutableCopy生成的是可变对象
+可变+copy 深拷贝 不可变
+不可变+copy 浅拷贝 不可变
+可变+copy 深拷贝 不可变
+
 
 14.这个写法会出什么问题：@property (nonatomic, copy) NSMutableArray *arr;
-应该用strong来修饰，并在赋值时对对象进行mutableCopy
+copy生成的是不可变对象，应该用strong修饰，然后进行mutableCopy
 
 15.如何让自己的类用 copy 修饰符？如何重写带 copy 关键字的 setter？
-使自己的类遵从NSCopying协议，并实现copyWithZone方法
-
+实现NSCopying协议 copyWithZone方法
 
 16.@synthesize 和 @dynamic 分别有什么作用？
-@synthesize自动合成，@dynamic告诉编译器不自动生成，由用户手动实现
-
+@synthesize，自动合成属性访问方法，
+@dynamic禁止自动合成，由用户手动实现，编译器不报错，运行时如果找不到访问方法，就会崩溃
 
 17.常见的 Objective-C 的数据类型有那些，和C的基本数据类型有什么区别？如：NSInteger和int
-Objective-C的数据类型有NSString，NSNumber，NSArray，NSMutableArray，NSData等等，这些都是class，创建后便是对象，而C语言的基本数据类型int，只是一定字节的内存空间，用于存放数值;NSInteger是基本数据类型，并不是NSNumber的子类，当然也不是NSObject的子类。NSInteger是基本数据类型Int或者Long的别名(NSInteger的定义typedef long NSInteger)，它的区别在于，NSInteger会根据系统是32位还是64位来决定是本身是int还是long。
+NSInteger是int或者long的别名，会根据系统是32位还是64位来决定本身是int还是long
 
 18.id 声明的对象有什么特性？
 id声明的对象具有运行时的特性，即可以指向任何类型的OC对象
 
 19.Objective-C 如何对内存管理的，说说你的看法和解决方法
-1.ARC
-2.MRR/MRC
-3.自动释放池，自动释放池受RunLoop影响
+1.MRR
+2.ARC
+3.AutoReleasePool
+
 
 20.Objective-C 中创建线程的方法是什么？如果在主线程中执行代码，方法是什么？如果想延时执行代码、方法又是什么？
 
+
 21.Category（类别）、 Extension（扩展）和继承的区别
-区别：
 1.分类有名字，扩展没有名字，扩展是匿名的分类
-2.分类只能声明方法。类扩展可以扩展属性，成员变量和方法
+2.分类只能声明方法。类扩展可以增发方法，属性和成员变量
 3.继承可以增加删除修改方法，并且可以增加属性
 
 22.我们说的OC是动态运行时语言是什么意思？
-主要是将数据类型的确定有编译器，推到了运行时，直到运行时才去决定一个对象的类别，以及调用该类别对象对象指定方法。
-
+主要讲数据类型的确定由编译时推迟到了运行时，知道运行时才去决定一个对象的类别，
+以及调用该类别的方法
 
 23.为什么我们常见的delegate属性都用是week而不是retain/strong？
 避免循环引用
 
-
 24.什么时候用delegate，什么时候用Notification？
-delegate1对1，notification1对多
-
+delegate是一对一，Notification是一对多，View和其他部分交互一般用delegate，Model和其他部分交互一般用NSNotification，NSNotification可以跨多个层级传递数据
 
 25.什么是 KVO 和 KVC？
-KVC编制编码模式，提供了一种通过字符串间接访问对象的方式
-KVO键值观察模式，KVO只能被KVC触发
-
+KVO是键值观察，能够使对象在其他对象的属性发生更改时获得通知。
+KVC是键值编码，通过字符串间接访问对象属性的方式
 
 26.KVC的底层实现？
-1.当一个对象调用setValue方法时，检查是否存在对应的key的set方法，如果存在就去实现
-2.如果set方法不存在，就会查找与Key同名并且带下划线的成员变量，如果有，则直接给成员变量赋值
-3.如果没有找到_key，就会查找isKey等相同名称的属性，如果有就直接辅助
-4.如果还没有找到，则调用valueForUndefinedKey方法抛出异常
-
+1.当一个对象调用setValue方法时，检查是否存在对应的key的setValue方法，如果存在就去实现
+2.如果set方法不存在，就去查找与key同名并且带有下划线的成员变量，如果有，则直接给成员变量赋值
+3.如果不存在，则去找与key同名或者isKey等相关的属性，如果有就直接赋值
+4.如果还没有找到，则调用valueForUnDefinedKey方法抛出异常
 
 27.KVO的底层实现？
-如果一个对象A被注册为被观察者，在运行时会动态生成一个派生类，名为NSKeyValueObserver_A,并重写该类被观察属性的set方法
-- （void）setName：（NSString *）name{
+如果一个对象注册为被观察对象，在运行时会动态生成一个派生类，类名为NSKeyValueObserver_A，并重写该类被观察属性的set方法
+- （void）setName:(NSString *)name
+{
 [self willChangeValueForKey:];
-_name = name;
+[super setName:name];
 [self didChangeValueForKey:];
 }
+触发回调observeValueForKeyPath
 
 28.ViewController生命周期
-1.initWithCoder
-2.awakeFrameNib
-3.loadView
-4.Viewdidload
-5.viewWillAppear
-6.updateViewConstraints
-7.viewWillLayoutSubViews
-8.viewDidLayoutSubViews
-9.viewDidAppear
-10.viewWillDisappear
-11.viewDidDisappear
+1.loadView
+2.ViewDidLoad
+3.ViewWillAppear
+4.ViewWillLayoutSubViews
+5.ViewDidLayoutSubViews
+6.ViewDidAppear
+7.ViewWillDisappear
+8.ViewDidDisappear
+9.dealloc
 
-29.方法和选择器有何不同？
-选择器是方法的名字，方法是一个组合体，包含了名字和实现
-
-
-30.你是否接触过OC中的反射机制？简单聊一下概念和使用
-class反射
-SEL的反射
-
-31.调用方法有两种方式：
-1.[obj func];
-2.[obj performSelector];
-3.objc_msgSend;
-
-32.如何对iOS设备进行性能测试？
-instrument-->Time Profile
+29.UIApplication的声明周期
+状态：
+1.Not Running
+2.inactive
+3.active
+4.backGround
+5.suspend
+UIApplication代理：
+1.didFinishLaunchingWithOptions
+2.DidBecomeActive  获取焦点
+3.DidEnterBackground  已经进入后台
+4.WillResignActive  即将失去焦点
+5.WillEnterForeground 即将进入前台
+6.DidReceiveMemoryWarning   内存警告
+7.WillTerminate   即将推出
 
 
-33.开发项目时你是怎么检查内存泄露？
-1.静态分析
-2.instruments-->leaks
-3.腾讯的MLeaksFinder
+30.方法和选择器有何不同？
+选择器是方法的名字，方法包含了参数，方法名和返回值还有实现
+
+31.你是否接触过OC中的反射机制？简单聊一下概念和使用
+NSStringFromClass NSClassFromString
+NSStringFromSelector  NSSelectorFromString
+
+32.调用方法有两种方式：
+[obj func]
+[obj performSelector]
+objc_msgSend
+
+33.如何对iOS设备进行性能测试？
+instrument----Time Profile
 
 
-34.什么是懒加载？
-懒加载就是只在用到的时候才去初始化。也可以理解成延时加载。
+34.开发项目时你是怎么检查内存泄露？
+1.Analyse
+2.Time-Profile
+3.MLeaksFinder
+
+35.什么是懒加载？
+只有在用到的时候才初始化，也可以理解成延时加载
+
+36.类变量的 @public，@protected，@private，@package 声明各有什么含义？
+@public:
+将实例变量设置为可以被任何对象访问。
+@private:
+将实例变量设置为只能在声明它的类以及与该类类型相同的其他实例中访问。
+@package:
+将实例变量设置为可以被其他类实例和函数访问，但是在其所属程序包的外部，它会被视为私有变量。这种作用范围可以用于库或框架类。
+@protected:
+这是实例变量默认的作用范围，将实例变量设置为只能在声明它的类以及子类的实例方法中能访问。
+
+37.什么是谓词？
+谓词就是通过NSPredicate给定的逻辑条件作为约束条件，完成对数据的筛选
+
+38.isa指针问题
+指向对象的Class的指针
 
 
-35.类变量的 @public，@protected，@private，@package 声明各有什么含义？
-@protected，默认，该类和子类都可以访问
-@private，只能在该类访问
-@public，如何地方都能访问
-@package ，本包内可以访问，跨包不可以
-
-
-36.什么是谓词？
-谓词就是通过NSPredicate给定的逻辑条件作为约束条件,完成对数据的筛选
-
-
-37.isa指针问题
-指向Class的指针
-
-
-38.如何访问并修改一个类的私有属性？
+39.如何访问并修改一个类的私有属性？
 1.KVC
-2.通过Runtime访问并修改私有属性
+2.通过RunTime访问并修改类的私有属性
 
-39.一个objc对象的isa的指针指向什么？有什么作用？
-指向它的类对象，从而找到对象上的方法
+40.一个objc对象的isa的指针指向什么？有什么作用？
+指向他的类对象，从而找到对象上的方法
 
-
-40.isKindOfClass、isMemberOfClass、selector作用分别是什么
-isKindOfClass：作用是某个对象属于某个类型或者继承自某类型。
-isMemberOfClass：某个对象确切属于某个类型。
-
-
-
-41.delegate 和 notification 的区别
-1. 二者都用于传递消息，不同之处主要在于一个是一对一的，另一个是一对多的。
-2.delegate需要两者之间建立关系，不然没法调用代理的方法，notification不需要两者之间建立关系
+41.isKindOfClass、isMemberOfClass、selector作用分别是什么
+isKindOfClass，判断该对象是否为某类的实例或者继承自某类
+isMemberOfClass，某个对象是否属于某个类的实例
 
 
 42.什么是block？
-闭包，包含其他函数局部变量的匿名函数
+闭包，包含局部变量的匿名函数
 
 43.BAD_ACCESS在什么情况下出现？
-原因是访问了野指针，比如访问已经释放对象的成员变量，或者发消息，死循环等
-
+1.原因是访问了野指针，
+2.比如访问已经释放对象的成员变量，或者发消息，
+3.死循环等。
 
 44.lldb（gdb）常用的控制台调试命令
 po
 
-
 45.你一般是怎么用Instruments的？
-1.Time Profiler: 性能分析
-2.Zombies：检查是否访问了僵尸对象
-3.Allocations：用来检查内存
-4.Leaks：检查内存，看是否有内存泄露
+Time-Profile 性能分析
+Leaks 内存泄露
+Allocations 用来检查内存分配
+Zombies 检查僵尸对象
 
 46.iOS中常用的数据存储方式有哪些？
-NSUserDefault,KeyChain,File,DB
-File:Plist,NSKeyedArchive
-DB:sqlite,FMDB,CoreData
+plist  NSUserDefault
+数据库  Sqlite,CoreData
+文件   NSKeyedArchive
+钥匙链  KeyChain
 
 
 47.iOS的沙盒目录结构是怎样的？
-1.Documents 存储用户数据，数据库
-2.Library  Preferences：程序的偏好设置 Caches：存储文件
-3.tmp  临时文件
-
+1.Document  存储用户数据，数据库
+2.Library  Caches:存储文件 Preferences:系统的偏好设置
+3.Temp   临时文件
 
 
 48.iOS多线程技术有哪几种方式？
-NSThread,GCD,NSOperationQueue,pthread
+pthread  NSThread  NSOperationQueue  GCD
 
-
-49.GCD 与 NSOperation 的区别：
+49.GCD 与 NSOperationQueue 的区别：
+1.GCD是C语言的API，NSOperationQueue是OC对象
+2.GCD更底层，使用更方便，效率更高
+3.NSOperationQueue功能更多，是GCD面相对象的封装
+4.NSOperationQueue支持KVO，可以取消，可以暂停，可以设置优先级，设置依赖关系
+5.NSOperation可以创建子类，子定义功能扩展
 
 50.如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）
-使用dispatch_group 和dispatch_group_notify
+dispatch_group和dispatch_group_notify
+
 
 51.dispatch_barrier_async（栅栏函数）的作用是什么？
-1.在它前面的任务需要执行完成才能执行他，后面的任务需要等它执行完后才能开始
-2.避免数据竞争
-
+在并行队列中，为了保证某些任务的正常运行，需要等到一些任务完成后才能继续进行下去，使用
+dispatch_barrier_async来等待之前任务完成，避免数据竞争等问题。
 
 52.什么是 RunLoop
 
-
 53.说说你对 runtime 的理解
 
-
 54.Runtime实现的机制是什么，怎么用，一般用于干嘛？
+1.Method Swizzling
+2.实现给分类增加属性
+3.实现字典和模型的自动转换
+4.JSPatch动态创建类，新增方法，成员变量，协议，消息转发等
+5.实现NSCoding的自动归档和自动解档
+6.KVO的实现
 
+55. RunLoop在开发中的使用
+1.NSTimer在滑动时停止的问题
+2.ImageView延迟加载
+3.后台常驻线程
 
-55.什么是 Method Swizzle（黑魔法），什么情况下会使用？
+56.什么是 Method Swizzle（黑魔法），什么情况下会使用？
 
-
-56._objc_msgForward 函数是做什么的，直接调用它将会发生什么？
+57._objc_msgForward 函数是做什么的，直接调用它将会发生什么？
+objc_msgForward是做消息转发的，当向一个对象发送消息，这个对象并没有实现的时候，_objc_msgForward会
+尝试做消息转发，一旦调用了这个函数，会跳过消息传递的过程，直接走消息转发，即使实现了方法也不行
+什么时候会使用objc_msgForward方法
+1.你想获取某方法对应的方法签名时
+2.JSPatch 就是直接调用_objc_msgForward来实现其核心功能的
+3.同时 RAC(ReactiveCocoa) 源码中也用到了该方法
 
 
 57.什么是 TCP / UDP ?
 TCP  是         不可靠      传输大量的数据，对可靠性要求高的场合    慢
 UDP  否         可靠        传输少量的数据，对可靠性要求不高的场景  块
 
+
 58.通信底层原理（OSI七层模型）
 物理层，数据链路层，网络层，传输层，会话层，表示层，应用层
 
-
 59.介绍一下XMPP？
 
-
-60.OC中创建线程的方法是什么？如果在主线程中执行代码，方法是什么？
-
-
-61.tableView的重用机制？
+60.tableViewCell的重用机制？
 UITableView通过重用机制来节省内存，为每一个单元格指定一个重用标识符，即指定了单元格的种类，当单元格滑出屏幕时，
 系统会把这个单元格添加到重用对列中，等待被重用，当有新单元格从屏幕外划入屏幕时，从重用对列中找看有没有可重用的单元格
 ，如果有，就拿出来用，如果没有就创建一个来使用
 
-
-62.在手势对象基础类UIGestureRecognizer的常用子类手势类型中哪两个手势发生后，响应只会执行一次？
+61.在手势对象基础类UIGestureRecognizer的常用子类手势类型中哪两个手势发生后，响应只会执行一次？
 tap和swipe
 
-
-63.如何高性能的给 UIImageView 加个圆角
+62.如何高性能的给 UIImageView 加个圆角
 使用绘图技术
 
-
-
-64.HTTP协议中 POST 方法和 GET 方法有那些区别?
+63.HTTP协议中 POST 方法和 GET 方法有那些区别?
 1.get是用于向服务器请求数据，post用于提交数据
 2.get请求，请求参数拼接在形式暴露在地址栏，而POST请求参数则放在请求体里面，
 因此get请求不适合传重要数据
 3.get请求的URL有长度限制，POST无长度限制
 
-65.请简单的介绍下APNS发送系统消息的机制
-
-
+64.请简单的介绍下APNS发送系统消息的机制
+1.应用在通知中心注册，由iOS系统向APNS服务器请求返回设备令牌（Device Token）
+2.应用程序接收到设备令牌并发送给自己的后台服务器
+3.后台服务器将要推送的内容和设备令牌发送给APNS服务器
+4.APNS根据设备令牌找到设备，在由iOS系统根据APPID把推送消息展示
 
 66. ios开发逆向传值的几种方法整理
 1.代理
@@ -324,16 +353,16 @@ tap和swipe
 5.KVO
 
 
-
 67.浅谈iOS开发中方法延迟执行的几种方式
 1.performSelector
 2.NSTimer
 3.GCD
 4.NSThread线程的sleep
 
-
 68.您是否做过一部的网络处理和通讯方面的工作？如果有，能具体介绍一下实现策略么?
 1.使用NSOperation发送一部网络请求，NSOperationQueue管理线程数目和优先级，底层用NSUrlSession
+
+
 
 69.你使用过Objective-C的运行时编程（Runtime Programming）么？如果使用过，你用它做了什么？你还能记得你所使用的相关的头文件或者某些方法的名称吗？
 #import<objc/runtime.h>
@@ -430,84 +459,28 @@ static修饰局部变量，改变变量的作用域为全局，当程序退出�
 static修饰全局变量，修改全局变量的作用域，生命周期不会改，修改了使用范围
 https://blog.csdn.net/wujakf/article/details/80229148
 
-#endif /* ______h */
-
-
-
-//
-//  面试题回顾.h
-//  Example0
-//
-//  Created by 罗孟歌 on 2019/4/16.
-//  Copyright © 2019 lmg. All rights reserved.
-//
-
-#ifndef ______h
-#define ______h
-
-1.风格纠错题
-
-2.什么时候使用weak，什么时候使用assign，有什么区别
-修饰弱引用对象的时候用weak，修饰一般数据类型使用assign，都是简单的赋值操作，不保留对象，但是weak修饰的对象
-被释放是，指针会自动置为nil。weak只能用来修饰对象，assign可以用来修饰一般数据类型（非对象）
-
-3.怎么用copy关键字
-1.NSString，NSArray，NSDictionary等经常使用copy修饰，因为它们有对应的可变类型NSMutableString，NSMutableArray，NSMutableDictionary
-2.block经常用copy修饰
-
-4.这个写法会出现什么问题@property （copy）NSMutableArray *array
-此写法等同于NSMutableArray *temparray = [NSMutableArray array];
-array = [temparray copy];
-array为不可变对象，当对对象进行增删操作时会crash，应该用strong修饰，并在赋值时进行mutableCopy，最好再加上nonatomic
-
-5.如何让自己的类拥有copy修饰符，如何重写copy关键字的setter方法
-声明该类遵从NSCopying协议，并实现copyWithZone方法
--（void）setName:(NSString *)name
-{
-_name = [name copy];
-}
-
-6.@property的本质是什么，ivar，get，set是如何生成并添加到这个类的
-@property的本质是ivar+get+set
-完成属性定义后，编译器编写访问这些属性所用的方法，此过程叫做自动合成。这个过程由编译器在编译期完成。此外，可以使用@synthesize来指定生成的成员变量名
-
-7.@protocol和category中如何使用@property
+88.@protocol和category中如何使用@property
 ·在@protocol中声明属性，只会生成对应的set，get方法，我们的目的是为了让遵从这个协议的对象能实现该属性
 ·在category中声明属性，也是只会生成对应的set，get方法，如果我们真的需要给category增加属性的实现，我们可以使用Runtime的两个函数来实现
 
-8.runtime如何实现weak属性
+89.runtime如何实现weak属性
 weak此特质表明了一种非拥有关系
-runtime如何实现weak的自动置空：
-runtime对注册的类会进行布局，对于weak对象会放入一个hash表中。用weak所指向的对象的内存地址作为key，当此对象的引用计数为0时，对象会dealloc，假如weak指向的地址为a，
-那么就以a为key，找到所有以a为键的对象，从而设置为nil。
+Runtime维护了一个weak表，用于存储指向某个对象的所有weak指针，weak变其实是一个hash表
+key是所指对象的地址，value是weak指针的地址数组，当对象的引用计数为0时，根据对象的地址，寻找到weak指针的数组，
+遍历数组，将其中的数据置为nil，然后把这个对象从weak表中删除，然后清理对象的记录
 
-9.@property都有哪些修饰符
-atomic/nonatomic
-strong/weak/assign/copy/unsafe_unretainde
-readonly/readwrite
-setter/getter
-
-
-10.weak属性需要在dealloc中置为nil吗
+90.weak属性需要在dealloc中置为nil吗
 不需要，在属性所指向的对象被销毁时，属性值也会被置为nil
 
-11.@synthesize和@dynamic有什么不同
-使用@synthesizer，你可以自定义属性对应的成员变量名
-使用@dynamic可以禁止编译器自动合成属性
 
-
-12.ARC下，不显式的指定属性关键字时，默认的属性有哪些
+91.ARC下，不显式的指定属性关键字时，默认的属性有哪些
 strong，atomic，assign,readwrite
 
-13.NSString用copy修饰而不用strong修饰的原因
-NSString拥有子类NSMutableString，指向NSString的指针可以指向NSMutableString，当使用strong修饰时，指向的可能是一个可变字符串，
-如果我们在后面修改了这个字符串，可能会出现意想不到的意外。使用copy修饰时，会生成一个不可变的副本
-
-14.@synthesize合成实例变量的规则是什么，加入property名为foo，已经存在了_foo的实例变量，还会自动合成新变量吗
+92.@synthesize合成实例变量的规则是什么，加入property名为foo，已经存在了_foo的实例变量，还会自动合成新变量吗
 默认为属性值加下划线，如果指定了新的则用指定的名字作为属性的实例变量，不会再合成了
 
 
-15.在有了自动合成属性实例变量以后，@synthesize还有哪些使用场景
+93.在有了自动合成属性实例变量以后，@synthesize还有哪些使用场景
 1.在protocol中声明的属性
 2.在category中声明的属性
 3.用@dynamic
@@ -515,94 +488,54 @@ NSString拥有子类NSMutableString，指向NSString的指针可以指向NSMutab
 5，重写了只读属性的get方法时
 这些情况下都需要你使用@synthesize手动合成ivar，另外还可以改变属性实例变量名
 
-16.objc中向一个nil对象发送消息会发生什么
+94.objc中向一个nil对象发送消息会发生什么
 nil对象的isa指针会返回0，不会产生任何错误
 
-17.objc中向一个对象发送消息[obj foo]和objc_msgsend()函数之间有什么关系
+95.objc中向一个对象发送消息[obj foo]和objc_msgsend()函数之间有什么关系
 该方法编译时候就是objc_msgsend()函数调用
 
-18.什么时候会报unrecognizer selector错误
+
+96.什么时候会报unrecognizer selector错误
 走完消息传递的流程和消息转发的流程都找不到对应的方法时就会报这个错误
 
-消息传递的过程：
+97.消息传递的流程
 1.根据对象的isa指针找到对象所属的类，在类的方法缓存中寻找SEL，如果找到就去实现，找不到走下一步
 2.在类的方法列表中找，找到了就去实现，并把方法加入到该类的方法缓存中去，找不到走下一步
 3.在类的父类方法列表中找，一直到NSObject类为止，如果能找到就去实现，找不到就走消息转发的流程
 
-消息转发的流程：
+98.消息转发的流程
 1.动态方法加载objc运行时会调用resolveInstanceMethod或者resolveClassMethod让你动态添加方法
 2.forwardingTargetForSelector返回备援接受者
 3.走完整的消息转发流程，首先会调用methodSignatureForSelector获取方法的参数和返回值类型，如果该方法返回nil，
 那么程序会调用doesNotRecognizeSelector,如果返回了NSMethodSignature，runtime就会创建一个函数签名并调用forwardInvocation，
 如果forwardInvocation返回nil，这是也会调用doesNotRecognizeSelector
 
-19.一个objc对象如何进行内存布局
 
-isa指针
-根类的实例变量
-...
-父类的实例变量
-类的实例变量
-
-
-20.一个objc对象的isa指针指向什么，起什么作用
-指向对象的类，从而找到类的方法
-
-21.下面的代码输出什么
-@implementation Son : Father
-- (id)init
-{
-self = [super init];
-if (self) {
-NSLog(@"%@", NSStringFromClass([self class]));
-NSLog(@"%@", NSStringFromClass([super class]));
-}
-return self;
-}
-@end
-Son Son
+99.runtime如何通过selector找到对应的IMP实现
+每一个类对象都有一个对象方法列表（对象方法缓存），类方法列表是存放在类对象中isa指针
+指向的元类对象中，方法列表中每个方法结构体中记录着方法的名称，方法实现，以及参数类型，
+其实selector本质就是方法名称，通过方法名称就可以在方法列表中找到对应的方法实现。
+当我们发送一个消息给一个NSObject对象时，这条消息会在对象的类对象方法列表里查找，当我们发送一个消息给一个类时，这条消息会在类的元类对象的方法列表中去查找。
 
 
-22.runtime如何通过selector找到对应的IMP实现
-每一个类对象中都有一个方法列表，方法列表记载着方法的名称，实现，以及参数和返回值，
-selector的本质就是方法名，通过这个名称在方法列表中就可以找到对应的方法实现
-
-
-23.使用runtime associate关联的对象，需要在主对象dealloc的时候释放吗
+100.使用runtime associate关联的对象，需要在主对象dealloc的时候释放吗
 不需要
 
-
-24.OC的类方法和实例方法本质上有什么区别和联系
-1.类方法是属于类对象的/实例方法是属于实例对象的
-2.类方法只能通过类对象调用/实例方法只能通过实例对象调用
-3.类方法中的self是类对象/实例方法中的self是实例对象
-4.类方法可以调用其他的类方法/实例方法中可以访问成员变量
-5.类方法中不能访问成员变量/实例方法中直接调用实例方法
-6.类方法中不能直接调用对象方法/实例方法中也可以调用类方法(通过类名)
-
-
-25.objc_msgForward()是做什么用的，直接调用它会发生什么
-objc_msgForward是做消息转发的，当向一个对象发送消息，这个对象并没有实现的时候，_objc_msgForward会
-尝试做消息转发，一旦调用了这个函数，会跳过消息传递的过程，直接走消息转发，及时实现了方法也不行
-什么时候会使用objc_msgForward方法
-1.你想获取某方法对应的方法签名时
-2.JSPatch 就是直接调用_objc_msgForward来实现其核心功能的
-3.同时 RAC(ReactiveCocoa) 源码中也用到了该方法
-
-
-26.能都向编译后得到的类中增加实例变量，能否向运行时动态添加的类中增加实例变量，为什么
+101.能都向编译后得到的类中增加实例变量，能否向运行时动态添加的类中增加实例变量，为什么
 不能，能
 原因，编译后的类注册在Runtime中，类的实例变量链表和实例变量的内存大小都是确定的
 运行时创建的类可以通过class_addIvar增加实例变量，但是必须要在objc_allocateClassPair和objc_registerClassPair之间
 
-27.RunLoop和线程之间有什么关系
+
+102.RunLoop和线程之间有什么关系
 1.RunLoop和线程是一一对应的，RunLoop是线程的基础架构部分，有一个全局字典存储了RunLoop，以线程为key，而
 value为对应的RunLoop
 2.主线程的RunLoop默认是启动的
 3.子线程的RunLoop默认是不启动的，当你获取的时候会自动创建，并存储字典，当线程被销毁的时候，RunLoop也会被销毁
 4.CFRunLoopGetCurrent来获取当前线程的Runloop，CFRunLoopGetMain来获取主线程的RunLoop
 
-28.RunLoop的mode作用是什么
+
+103.RunLoop的mode作用是什么
 mode主要是用来指定事件在运行循环中的优先级，分为
 NSDefaultRunLoopMode：默认优先级
 UITrackingRunLoopMode，ScrollView滑动时
@@ -610,12 +543,14 @@ UIInitializationRunLoopMode，应用启动时
 NSRunLoopCommonModes：前两个的集合，是一种标记
 苹果公开提供的mode有两个：NSDefaultRunLoopMode，NSRunLoopCommonModes
 
-29.以scheduledTimerWithTimeInterval的方式触发的NSTimer在滑动页面的列表时，Timer会暂停回调，为什么
+
+104.以scheduledTimerWithTimeInterval的方式触发的NSTimer在滑动页面的列表时，Timer会暂停回调，为什么
 RunLoop只能运行在一种mode下，scheduledTimerWithTimeInterval创建的Timer默认会添加在NSDefaultRunLoopMode
 中，当UIScrollView滑动时，当前mode被切换成UITrackingRunLoopMode，此时RunLoop会停下重新启动，无法再执行NSTimer，
 可以将NSTimer添加到NSRunLoopCommonModes解决这个问题
 
-30.猜想RunLoop内部是如何实现的
+
+105.猜想RunLoop内部是如何实现的
 function (){
 do{
 var message = get_next_message
@@ -623,48 +558,28 @@ process_message(messgae)
 }while(message != quit)
 }
 
-31.不手动指定autoreleasePool的情况下，一个autoreleasePool什么时候释放
+
+106.不手动指定autoreleasePool的情况下，一个autoreleasePool什么时候释放
 1.所有的autorelease的对象，在出了作用域后，会被添加到最近创建的自动释放池中，并会在当前的RunLoop迭代结束时释放
 2.从程序开始加载到加载完成是一个完整的事件循环，然后会停下来，等待用户交互，用户的每一次交互都会启动一次运行循环，来处理
 用户所有的点击事件和触摸事件
 3.viewDidLoad和viewWillAppear属于同一循环，ViewdidAppear时已经被释放了
 
 
-32.BAD_ACCESS在什么时候会出现
-1.野指针
-2.死循环
-3.访问一个已经释放了的对象的成员变量，或者发消息
-
-
-33.苹果是如何实现autoreleasePool的
-
-
-34.使用block什么时候会发生循环引用，如何结局？
+107.使用block什么时候会发生循环引用，如何结束？
 一个对象强引用了block,block又强引用了这个对象，就会发生循环引用，使用__block或者__weak来修饰对象
 
-35.在block内如何修改外部变量
-__block,__block所起的作用就是标记某对象，把给对象的内存地址copy到堆上，然后再对其进行修改
-
-36.使用系统的某些blockAPI时，是否需要考虑循环引用
+108.使用系统的某些blockAPI时，是否需要考虑循环引用
 一般不需要
 
-37.GCD的队列（dispatch_queue_t）分哪两种类型
-串行队列和并行队列
 
-38.如何用GCD同步若干个异步调用？
+109.如何用GCD同步若干个异步调用？
 dispatch_group_t
 
-39.dispatch_barrier_async的作用是什么？
-在并行队列中，为了保证某些任务的正常运行，需要等到一些任务完成后才能继续进行下去，使用
-dispatch_barrier_async来等待之前任务完成，避免数据竞争等问题。
-
-
-40.苹果为什么要废弃dispatch_get_current_queue()函数
+110.苹果为什么要废弃dispatch_get_current_queue()函数
 dispatch_get_current_queuet容易造成死锁
 
-
-41.以下代码执行结果如何
-- (void)viewDidLoad
+111.以下代码执行结果如何
 {
 [super viewDidLoad];
 NSLog(@"1");
@@ -675,26 +590,7 @@ NSLog(@"3");
 }
 发生主线程锁死
 
-42.
-
-
-
-#endif /* ______h */
-/*
-1.tableView的优化
-2.Runtime
-3.HTTPS的加密过程
-4.weak底层原理
-5.两个独立的模块如何通信
-6.属性常用修饰词
-
-1.weak实现原理概括
-Runtime维护了一个weak表，用于存储指向某个对象的所有weak指针，weak变其实是一个hash表
-key是所指对象的地址，value是weak指针的地址数组，当对象的引用计数为0时，根据对象的地址，寻找到weak指针的数组，
-遍历数组，将其中的数据置为nil，然后把这个对象从weak表中删除，然后清理对象的记录
-
-
-2.tableView的优化
+112.TableView的优化
 1.正确的复用cell
 2.设计统一规格的cell
 3.提前计算并缓存好高度，因为heightForRowAtIndexPath是调用最频繁的方法
@@ -705,16 +601,57 @@ key是所指对象的地址，value是weak指针的地址数组，当对象的�
 8.滑动时按需加载，这个在大量图片展示，网络加载的时候很管用
 9.使用调试工具分析问题
 
-3.Runtime
-1.消息发送机制和消息转发机制
-2.动态添加成员变量的时机
-3.为什么可以动态添加方法，而不可以动态添加成员变量
-4.category，extension的区别
+113.TCP的三次握手和四次挥手
+三次握手：
+1.客户端发送SYN（SEQ=x）报文给服务器，此时客户端处于SYN_SEND状态
+2.服务器收到SYN报文，回复一个SYN(SEQ=y)+ACK(ACK=x+1)报文，进入SYN_RECV状态
+3.客户端收到服务器的SYN报文，回应一个ACK(ACK=y+1)报文，此时双方进入Established状态
 
-4.两个独立的模块如何通信
-URLRouter
+四次挥手：
+1.某个应用程序首次调用close，称该端将主动关闭，该段的TCP发送一个FIN分节，表示自己数据发送完毕
+2.接受到FIN的对端执行“被动关闭”，它的TCP发送ACK
+3.一段时间后，接受到这个文件结束符的应用程序将调用close关闭它的socket，这导致它的TCP也发送一个FIN
+4.接受这个最终FIN的原发送端TCP确认这个FIN，发送ACK
+
+114.iOS中的所有架构
+模拟器：
+i386     4s-5
+x86_64   5s---最新
+真机：
+armv7    3gs--4S
+armv7s   5/5c
+arm64    5s---最新
 
 
+115.是否可以把比较耗时的操作发到NSNotificationCenter中
+首先必须明确通知在哪个线程中发出，那么处理接收到通知的方法也在这个线程中调用
+如果在异步线程发的通知，那么可以执行比较耗时的操作
+如果在主线程发的通知，那么就不可以执行比较耗时的操作。
+
+116.SDWebImage的加载逻辑：
+1根据URL查看是否内存中是否有图片缓存，如果有的话就回调block将图片返回
+2如果内存中没有，就去异步查找磁盘中是否有图片，如果从磁盘中读取到图片，将图片添加到内存缓存中，回调block将图片返回
+3内存和磁盘中都没有图片缓存，创建网络请求下载图片
+4图片下载完成后，数据完成后先做图片解码操作，将图片添加到内存缓存和磁盘缓存，回调block将图片返回，图片数据写入磁盘缓存中是异步操作
 
 
+117.UIView与CALayer的关系
+UIView继承于UIResponder,(UIResponder继承于NSObject)
+CALayer继承于NSObject
+区别在于UIResponder这一层，UIView可以响应事件，而Layer不可以
+UIView对于绘图和动画都是layer完成的，UIView只是呈现Layer和处理交互响应事件
+
+118.APNS推送流程
+1.The app register for push notifications,The OS asks APNS for a device token
+2.The app receives the device token
+3.The app send the token to your server
+4.When something interesting happens,your server sends a push notification to the APNS erver
+5.APNS server sends the push notification to your app.
+
+119.load加载和initialize方法的区别：
+1.load方法会在initialize方法的调用操作之前，类被加载之后立即被调用。实际上，对于以静态方式链接的类（可执行程序的组成部分），调用load方法的操作在调用main（）函数的操作之前。如果load方法是在可选包中的类实现的，那么当该包以动态方式被加载时load方法就会执行。当该方法被调用时，程序的自动释放池通常还不存在，其他类可能还没有加载。
+2.load方法可以由类实现也可以由分类实现。事实上，一个类中的所有分类都可以实现其本身的load方法，initialize方法永远不能在分类实现。
+3.load方法在实现的前提下，一定会被调用且仅调用一次。initializet如果类没有被使用，那么该方法就不会被调用。
 */
+
+#endif /* ______h */
