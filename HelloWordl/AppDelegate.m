@@ -48,6 +48,39 @@
         
     }
     
+    NSString *string = @"hellojsafhdksjafdsa";
+    NSString *subString = @"mjjjjj";
+    [string rangeOfString:subString];
+    
+    
+    int array[] = {1,2,3,1,1,4};
+    int length = sizeof(array) / sizeof(int);
+    if (length == 1) {
+
+    }
+    
+//    const char *stringChars = [string UTF8String];
+//    const char *subStringChars = [subString UTF8String];
+//
+//    int len = (int)strlen(stringChars);
+//    int subLen = (int)strlen(subStringChars);
+//    int i=0,j=0;
+//    while (j < subLen-1 && i< (len-1)) {
+//        if (stringChars[i] == subStringChars[j]) {
+//            i++;
+//            j++;
+//        }else{
+//            j=0;
+//            i++;
+//        }
+//    }
+//    if (j == subLen -1) {
+//        NSLog(@"------%d------",i-j);
+//    }else{
+//        NSLog(@"-1");
+//    }
+    
+    
     
     return YES;
 }
