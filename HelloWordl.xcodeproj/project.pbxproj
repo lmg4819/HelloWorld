@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920A4984229BB67F00FDF1F0 /* JSLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920A4983229BB67F00FDF1F0 /* JSLockViewController.m */; };
+		920A498A229BC3A400FDF1F0 /* ThreadSafeQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 920A4988229BC3A400FDF1F0 /* ThreadSafeQueue.m */; };
 		920A86512285695A0025A02A /* 性能检测 in Resources */ = {isa = PBXBuildFile; fileRef = 920A86502285695A0025A02A /* 性能检测 */; };
 		920A8653228570030025A02A /* 设计模式 in Resources */ = {isa = PBXBuildFile; fileRef = 920A8652228570030025A02A /* 设计模式 */; };
 		920AAC56227EB3CD00362F56 /* Section49.m in Sources */ = {isa = PBXBuildFile; fileRef = 920AAC55227EB3CD00362F56 /* Section49.m */; };
@@ -58,10 +60,15 @@
 		924A9DCA2276E038003A0226 /* JSLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 924A9DC82276E038003A0226 /* JSLock.m */; };
 		924A9DCD2276F863003A0226 /* JSRunTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 924A9DCC2276F863003A0226 /* JSRunTime.m */; };
 		924A9DCF22770539003A0226 /* 面试题总结文件 in Resources */ = {isa = PBXBuildFile; fileRef = 924A9DCE22770539003A0226 /* 面试题总结文件 */; };
+		92915522229BD58700ACE60D /* 界面卡顿 in Resources */ = {isa = PBXBuildFile; fileRef = 92915521229BD58700ACE60D /* 界面卡顿 */; };
 		92C6EB9A228406CD004BCD84 /* YYCacheAyalyse.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C6EB99228406CD004BCD84 /* YYCacheAyalyse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		920A4982229BB67F00FDF1F0 /* JSLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSLockViewController.h; sourceTree = "<group>"; };
+		920A4983229BB67F00FDF1F0 /* JSLockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSLockViewController.m; sourceTree = "<group>"; };
+		920A4988229BC3A400FDF1F0 /* ThreadSafeQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadSafeQueue.m; sourceTree = "<group>"; };
+		920A4989229BC3A400FDF1F0 /* ThreadSafeQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadSafeQueue.h; sourceTree = "<group>"; };
 		920A86502285695A0025A02A /* 性能检测 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "性能检测"; sourceTree = "<group>"; };
 		920A8652228570030025A02A /* 设计模式 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "设计模式"; sourceTree = "<group>"; };
 		920AAC54227EB3CD00362F56 /* Section49.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Section49.h; sourceTree = "<group>"; };
@@ -153,6 +160,7 @@
 		924A9DCB2276F863003A0226 /* JSRunTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRunTime.h; sourceTree = "<group>"; };
 		924A9DCC2276F863003A0226 /* JSRunTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRunTime.m; sourceTree = "<group>"; };
 		924A9DCE22770539003A0226 /* 面试题总结文件 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "面试题总结文件"; sourceTree = "<group>"; };
+		92915521229BD58700ACE60D /* 界面卡顿 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "界面卡顿"; sourceTree = "<group>"; };
 		92C6EB98228406CD004BCD84 /* YYCacheAyalyse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYCacheAyalyse.h; sourceTree = "<group>"; };
 		92C6EB99228406CD004BCD84 /* YYCacheAyalyse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYCacheAyalyse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +181,7 @@
 			children = (
 				920A86502285695A0025A02A /* 性能检测 */,
 				920A8652228570030025A02A /* 设计模式 */,
+				92915521229BD58700ACE60D /* 界面卡顿 */,
 			);
 			path = "应用开发知识总结";
 			sourceTree = "<group>";
@@ -537,8 +546,8 @@
 				920D36D12275745A00D63241 /* AppDelegate.m */,
 				920D36D32275745A00D63241 /* ViewController.h */,
 				920D36D42275745A00D63241 /* ViewController.m */,
-				920D36D62275745A00D63241 /* Main.storyboard */,
 				920D36D92275745C00D63241 /* Assets.xcassets */,
+				920D36D62275745A00D63241 /* Main.storyboard */,
 				920D36DB2275745C00D63241 /* LaunchScreen.storyboard */,
 				920D36DE2275745C00D63241 /* Info.plist */,
 				920D36DF2275745C00D63241 /* main.m */,
@@ -558,8 +567,12 @@
 		9233BA4B2276D541009C19D3 /* 锁 */ = {
 			isa = PBXGroup;
 			children = (
+				920A4989229BC3A400FDF1F0 /* ThreadSafeQueue.h */,
+				920A4988229BC3A400FDF1F0 /* ThreadSafeQueue.m */,
 				924A9DC92276E038003A0226 /* JSLock.h */,
 				924A9DC82276E038003A0226 /* JSLock.m */,
+				920A4982229BB67F00FDF1F0 /* JSLockViewController.h */,
+				920A4983229BB67F00FDF1F0 /* JSLockViewController.m */,
 			);
 			path = "锁";
 			sourceTree = "<group>";
@@ -652,6 +665,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92915522229BD58700ACE60D /* 界面卡顿 in Resources */,
 				920D2A99227825FE0040F8EE /* Prepare in Resources */,
 				920D2A9F227826BD0040F8EE /* 知识点总结 in Resources */,
 				920D2A96227825A60040F8EE /* block in Resources */,
@@ -692,6 +706,7 @@
 				920B9025227FD60D001C9F61 /* Section53.m in Sources */,
 				920B904622802BA5001C9F61 /* Section58.m in Sources */,
 				920CE8E022811BCC007C7FC4 /* Section64.m in Sources */,
+				920A498A229BC3A400FDF1F0 /* ThreadSafeQueue.m in Sources */,
 				920B905622803C9B001C9F61 /* Section62.m in Sources */,
 				920CE8F522817B97007C7FC4 /* YYCache.m in Sources */,
 				920B9020227FD34C001C9F61 /* Section52.m in Sources */,
@@ -708,6 +723,7 @@
 				9233BA502276D573009C19D3 /* JSThread.m in Sources */,
 				920B9029227FDDD3001C9F61 /* Section54.m in Sources */,
 				920B902D227FE100001C9F61 /* Section55.m in Sources */,
+				920A4984229BB67F00FDF1F0 /* JSLockViewController.m in Sources */,
 				920B903E22802690001C9F61 /* Section56.m in Sources */,
 				920D36D22275745A00D63241 /* AppDelegate.m in Sources */,
 				920B901C227FCFE1001C9F61 /* Section51.m in Sources */,

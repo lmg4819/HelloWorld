@@ -42,7 +42,6 @@
             if ([array[j] intValue] > [temp intValue]) {
                 array[j+1] = array[j];
                 array[j] = temp;
-                
             }
         }
     }

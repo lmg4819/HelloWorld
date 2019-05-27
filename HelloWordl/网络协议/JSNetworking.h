@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  
  TCP与UDP的区别：都属于传输层协议
- 1.TCP是面相连接的，UDP是无连接的，即发送数据之前不需要建立连接,例如ping
+ 1.TCP是面相连接的，UDP是无连接的，即发送数据之前不需要建立连接
  2.TCP传输可靠，UDP传输不可靠
  3.TCP适合传输大量的数据，UDP适合少量数据
  4.TCP传输速度慢，UDP传输速度块

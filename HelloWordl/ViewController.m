@@ -10,6 +10,7 @@
 #import "JSRunTime.h"
 #import "JSTextContext.h"
 #import <pthread/pthread.h>
+#import "JSLockViewController.h"
 
 @interface ViewController ()
 @property (nonatomic,strong) UITextField *textField;
@@ -24,6 +25,19 @@
     // Do any additional setup after loading the view.
     
 //    ((UINavigationController *)[UIApplication sharedApplication].delegate.window.rootViewController).topViewController
+    
+    
+    NSLock *mainLock = [[NSLock alloc]init];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+    });
+    
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+    });
+    
   
     JSTextContext *context =[JSTextContext new];
     self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(run1) object: nil];
@@ -58,13 +72,19 @@
 
 - (void)run2
 {
-    NSLog(@"----run2------");
+    JSLockViewController *lockVC = [JSLockViewController new];
+    [self presentViewController:lockVC animated:YES completion:nil];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self performSelector:@selector(run2) onThread:self.thread withObject:nil waitUntilDone:NO];
 }
+
+
+
+
+
 
 /*
  1.如何去除苹果自带输入法输入英文时的“空格”
