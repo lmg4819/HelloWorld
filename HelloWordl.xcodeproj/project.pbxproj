@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58F72A53229828F900CC23B8 /* 腾讯面试题总结 in Resources */ = {isa = PBXBuildFile; fileRef = 58F72A52229828F900CC23B8 /* 腾讯面试题总结 */; };
 		920A86512285695A0025A02A /* 性能检测 in Resources */ = {isa = PBXBuildFile; fileRef = 920A86502285695A0025A02A /* 性能检测 */; };
 		920A8653228570030025A02A /* 设计模式 in Resources */ = {isa = PBXBuildFile; fileRef = 920A8652228570030025A02A /* 设计模式 */; };
 		920AAC56227EB3CD00362F56 /* Section49.m in Sources */ = {isa = PBXBuildFile; fileRef = 920AAC55227EB3CD00362F56 /* Section49.m */; };
@@ -62,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58F72A52229828F900CC23B8 /* 腾讯面试题总结 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "腾讯面试题总结"; sourceTree = "<group>"; };
 		920A86502285695A0025A02A /* 性能检测 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "性能检测"; sourceTree = "<group>"; };
 		920A8652228570030025A02A /* 设计模式 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "设计模式"; sourceTree = "<group>"; };
 		920AAC54227EB3CD00362F56 /* Section49.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Section49.h; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 				920D2AA722782C600040F8EE /* JSObject.h */,
 				924A9DCE22770539003A0226 /* 面试题总结文件 */,
 				920D2A9E227826BD0040F8EE /* 知识点总结 */,
+				58F72A52229828F900CC23B8 /* 腾讯面试题总结 */,
 			);
 			path = "面试题总结";
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				920D36D82275745A00D63241 /* Main.storyboard in Resources */,
 				920D2AA622782B230040F8EE /* 架构 in Resources */,
 				920D2A742277DD8C0040F8EE /* 剑指offer in Resources */,
+				58F72A53229828F900CC23B8 /* 腾讯面试题总结 in Resources */,
 				920D2A922278255A0040F8EE /* JSPods in Resources */,
 				920A8653228570030025A02A /* 设计模式 in Resources */,
 			);

@@ -1,0 +1,104 @@
+
+1.使用了第三方库, 有看他们是怎么实现的吗
+1.SDWebImage   网络图片下载和图片缓存机制
+2.AFNetworking   网络数据下载，网络安全策略，request序列化和response序列化，网络状态监听
+3.YYCache     数据缓存机制 ，LRU缓存策略，双向链表的增删改差
+4.YTKNetworking   对网络请求的进一步封装，提供请求依赖和批量请求的类
+5.MLeaksFinder    检查潜在的内存泄漏问题  调用了FBRetainCycleDetector检查循环引用
+
+
+
+2.遇到tableView卡顿吗？会造成卡顿的原因大致有哪些
+1.最常用的就是cell的重用，注册重用标识符
+2.避免cell的重新布局
+3.提前计算并缓存cell的布局和内容
+4.减少cell中控件的数量
+5.使用局部更新，尽量小范围更新
+6.加载网络数据，下载图片，使用异步加载，并缓存
+7.少使用addView和removeFromSuperView调整View层级
+8.缓存行高
+9.预渲染图像，先在bitmap context里将其画一遍，导成UIImage对象，然后再绘制到屏幕
+
+
+
+3.M、V、C相互通讯规则你知道的有哪些
+Model 数据模型
+View   视图
+Controller   控制器，Model和View的中介，Controller通过Action-Target和Delegate与View通信，通过NSNotification和KVO实现与Model的通信，
+View和Model之间不能直接通信
+
+
+4.NSTimer准吗？为什么
+不准，因为NSTimer是一种定时源，被添加到RunLoop中，当NSTimer所在的线程卡顿的话，NSTimer就会发生阻塞，
+当RunLoop模式切换的时候，NSTimer也会停止执行，NSTimer默认添加的是NSRunLoopDefaultMode，当ScrollView滑动时，RunLoopMode会切换成UITrackingRunLoopMode
+如何实现一个精准的NSTimer
+1.将RunLoopMode设置成UIRunLoopCommonModes
+2.将NSTimer放入子线程进行操作，再在主线程修改UI界面显示操作结果
+3.直接使用GCD替代
+4.使用mach内核级别的函数，获取到纳秒级的精确度，这个苹果官方文档里面有相关实现代码
+
+
+
+5.编译过程中都做了那些事
+1.预处理
+2.词法解析
+3.语法解析
+4.生成AST，抽象语法树
+5.生成代码和优化阶段（可能是中间代码）
+6.汇编代码
+7.链接程序
+8.生成可执行的二进制文件
+
+
+6.字典大致实现原理
+字典是通过hash表来实现key和value之间的映射和存储的
+根据key生成hash值
+
+
+7.你了解的锁有哪些，自旋锁和互斥对比
+1.@synchronized
+2.NSLock
+3.递归锁
+4.条件锁
+5.pthread_mutex互斥锁
+6.dispatch_semphore信号量加锁
+信号量的使用：
+1.保持线程同步，将异步执行任务转换成同步执行任务
+2.保证线程安全，为线程加锁
+
+
+8.内存泄漏可能存在的情况
+1.第三方框架使用不当AFNetworking 单利
+2.block循环引用  weak和strong相结合
+3.delegate循环引用   weak
+4.NSTimer和CADisplayLink循环引用  消息转发，使用代理类
+5.非OC对象内存处理     自己release对象
+6.地图类应用      手动将对象置为nil
+7.大次数循环内存暴涨    将代码放入自动释放池
+
+
+
+9.容错处理你们一般是注意哪些
+后台返回异常数据造成APP崩溃闪退的情况
+对数据要进行相应类型的判断，然后再进行下一步处理
+1.字典，数组野指针，NSNull等
+
+
+
+10.如果开始没做容错处理，如何防止潜在的崩溃
+1.category给类添加方法用来替换掉原本存在潜在崩溃的方法。
+2.利用异常补货来防止程序的崩溃，并且进行相应的处理
+
+
+
+11.iOS中的消息传递
+
+
+RAC提供了单一的，统一的方法去处理异步的行为，包括delegate方法，blocks回调，target-action机制，NSNotifications和KVO
+
+
+
+
+
+
+
