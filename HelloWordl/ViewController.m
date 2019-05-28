@@ -10,7 +10,6 @@
 #import "JSRunTime.h"
 #import "JSTextContext.h"
 #import <pthread/pthread.h>
-#import "JSLockViewController.h"
 
 @interface ViewController ()
 @property (nonatomic,strong) UITextField *textField;
@@ -70,15 +69,11 @@
     
 }
 
-- (void)run2
-{
-    JSLockViewController *lockVC = [JSLockViewController new];
-    [self presentViewController:lockVC animated:YES completion:nil];
-}
+
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self performSelector:@selector(run2) onThread:self.thread withObject:nil waitUntilDone:NO];
+    
 }
 
 

@@ -1,0 +1,46 @@
+/*
+1.UITableViewCell如何优化
+2.对称加密和非对称加密,MD5,sha256等
+3.UDP和TCP协议
+4.手写代码实现rangeOfString函数
+5.iOS中常用的设计模式
+6.MVC和MVVM和VIPER
+7.设计一个数据缓存（LRU）
+8.常用的三方框架AFNetworking，SDWebImage，YYCache
+9.平常你有那些性能优化经验
+10.程序的崩溃率是多少，如何减少崩溃率
+11.多线程和锁（重点），乐观锁和悲观锁（了解）
+12.你认为使用技术最多的项目是哪个
+13.你印象最深刻的一个项目
+14.实现一个单例模式需要注意那些点
+15.消息发送和消息转发的流程
+16.用海量数据中找出k个最大(最小)的值
+17.在二维有序数组中找出某个数字的位置
+18.类的继承关系（isa，元类）
+19.selector，IMP，class
+20.红黑树和B+树的理解
+21.在一个链表中找出倒数第k个节点
+22.HTTPS和HTTP的区别
+23.HTTPS的加密过程，关于加密你都有什么了解
+24.NSTimer滑动暂停的问题，RunLoop的三种输入源（观察者，定时源，输入源）
+25.子线程延时执行方法的问题
+26.对于AFNetworking的进一步封装，如何封装
+27.你们公司都有哪些私有库，干什么用的
+28.RunTime在开发中都有什么应用
+29.什么是AOP编程，你都用来做什么
+30.如何监听应用卡顿，如何做数据埋点
+
+
+
+
+
+
+VIPER
+View/User Interface  视图
+Interaction 交互
+Presenter/Event Handle 展示
+Entity  实体
+Roter/Wirefram  路由
+
+
+*/
