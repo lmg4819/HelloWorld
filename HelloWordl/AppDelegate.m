@@ -55,9 +55,6 @@
     
     int array[] = {1,2,3,1,1,4};
     int length = sizeof(array) / sizeof(int);
-    if (length == 1) {
-
-    }
     
 //    const char *stringChars = [string UTF8String];
 //    const char *subStringChars = [subString UTF8String];
