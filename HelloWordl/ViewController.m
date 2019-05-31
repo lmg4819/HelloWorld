@@ -10,11 +10,13 @@
 #import "JSRunTime.h"
 #import "JSTextContext.h"
 #import <pthread/pthread.h>
+#import "CYPAuthenticationView.h"
 
 @interface ViewController ()
 @property (nonatomic,strong) UITextField *textField;
 
 @property (nonatomic,strong) NSThread *thread;
+
 @end
 
 @implementation ViewController
@@ -73,7 +75,12 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        CYPAuthenticationView *authView = [[CYPAuthenticationView alloc]initWithFrame:CGRectZero];
+        [self.view addSubview:authView];
+    });
+   
 }
 
 

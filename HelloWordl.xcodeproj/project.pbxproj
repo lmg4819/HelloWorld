@@ -54,6 +54,7 @@
 		920D36DA2275745C00D63241 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 920D36D92275745C00D63241 /* Assets.xcassets */; };
 		920D36DD2275745C00D63241 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 920D36DB2275745C00D63241 /* LaunchScreen.storyboard */; };
 		920D36E02275745C00D63241 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 920D36DF2275745C00D63241 /* main.m */; };
+		92116DF322A0CE540069FCA6 /* CYPAuthenticationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92116DF122A0CE540069FCA6 /* CYPAuthenticationView.m */; };
 		9233BA502276D573009C19D3 /* JSThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 9233BA4F2276D573009C19D3 /* JSThread.m */; };
 		923A0C04229CC6E400E695E4 /* 最近面试题总结 in Resources */ = {isa = PBXBuildFile; fileRef = 923A0C03229CC6E300E695E4 /* 最近面试题总结 */; };
 		924A9DC72276DFAB003A0226 /* JSRunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 924A9DC62276DFAB003A0226 /* JSRunLoop.m */; };
@@ -148,6 +149,8 @@
 		920D36DC2275745C00D63241 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		920D36DE2275745C00D63241 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		920D36DF2275745C00D63241 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		92116DF122A0CE540069FCA6 /* CYPAuthenticationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPAuthenticationView.m; sourceTree = "<group>"; };
+		92116DF222A0CE540069FCA6 /* CYPAuthenticationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPAuthenticationView.h; sourceTree = "<group>"; };
 		9233BA4E2276D573009C19D3 /* JSThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSThread.h; sourceTree = "<group>"; };
 		9233BA4F2276D573009C19D3 /* JSThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSThread.m; sourceTree = "<group>"; };
 		923A0C03229CC6E300E695E4 /* 最近面试题总结 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "最近面试题总结"; sourceTree = "<group>"; };
@@ -521,6 +524,8 @@
 		920D36CF2275745A00D63241 /* HelloWordl */ = {
 			isa = PBXGroup;
 			children = (
+				92116DF222A0CE540069FCA6 /* CYPAuthenticationView.h */,
+				92116DF122A0CE540069FCA6 /* CYPAuthenticationView.m */,
 				920A864F2285693A0025A02A /* 应用开发知识总结 */,
 				920CE8E922817B4A007C7FC4 /* 数据缓存 */,
 				920AAC70227EDE7400362F56 /* C语言 */,
@@ -717,6 +722,7 @@
 				920CE8F222817B84007C7FC4 /* YYMemoryCache.m in Sources */,
 				92C6EB9A228406CD004BCD84 /* YYCacheAyalyse.m in Sources */,
 				924A9DCD2276F863003A0226 /* JSRunTime.m in Sources */,
+				92116DF322A0CE540069FCA6 /* CYPAuthenticationView.m in Sources */,
 				9233BA502276D573009C19D3 /* JSThread.m in Sources */,
 				920B9029227FDDD3001C9F61 /* Section54.m in Sources */,
 				920B902D227FE100001C9F61 /* Section55.m in Sources */,
