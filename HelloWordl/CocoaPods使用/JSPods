@@ -31,3 +31,101 @@ $ pod --version
 
 
 
+/*
+
+s.source_files常见写法
+
+“Directory1/*”
+"*"表示匹配所有文件
+
+"Directory1/Directory2/*.{h,m}"
+“*.{h,m}”表示匹配所有.h,.m结尾的文件
+
+"Directory1/**//*.h"
+“**”表示匹配所有子目录
+
+s.source常见写法
+
+s.source = { :git => "https://github.com/xiaofei86/LPPushService.git", :commit => "68defea" }
+commit => "68defea" 表示将这个Pod版本与Git仓库中某个commit绑定
+
+s.source = { :git => "https://github.com/xiaofei86/LPPushService.git", :tag => 1.0.0 }
+tag => 1.0.0 表示将这个Pod版本与Git仓库中某个版本的comit绑定
+
+s.source = { :git => "https://github.com/xiaofei86/LPPushService.git", :tag => s.version }
+tag => s.version 表示将这个Pod版本与Git仓库中相同版本的comit绑定
+
+
+验证.podspec
+
+pod sepc lint LPPushService.podspec
+
+--verbose来帮助定位错误
+pod spec lint LPPushService.podspec --verbose
+
+--use-librariesx允许依赖库包含.a静态库
+pod spec lint LPPushService.podspec --verbose --use-libraries
+
+--allow-warnings来允许警告
+pod spec lint LPPushService.podspec --verbose --use-libraries --allow-warnings
+
+*/
+
+
+/*
+
+创建私有的Spec Repo
+pod repo add [localRepoName] [URL]
+
+创建PodSpec文件
+pod spec create LPPushService
+
+使用cocopods-packager打包库
+gem install cocoapods-package
+
+打包framework
+pod package LPPushService.podspec --force --verbose
+
+打包.a
+pod package LPPushService.podspec --library --force --verbose
+
+*/
+
+/*
+
+1.pod lib lint 和  pod spec lint 区别
+pod lib lint不访问网络，而pod spec lint检查外部回购协议和相关标记，最好直接用pod spec lint
+
+2.如果引用了其他的私有库，那么需要加上另一个私有库的地址进行验证
+pod spec lint --resource='私有仓库repo地址,https://github.com/CocoaPods/Specs'
+pod repo push 本地repo名 podspec名 --resource='私有仓库repo地址,https://github.com/CocoaPods/Specs'
+
+3.引用自己或第三方的framework或.a文件时
+s.ios.vendored_frameworks = "xxx/**//*.framework"
+s.ios.vendored_libraries = "xxx/**//*.a”
+
+4.私有库中添加资源
+1.第一种，但是这种资源会在打包的时候直接拷贝到APP的bundle中，这样说不定会和其他资源产生命名冲突
+spec.resource = ["Image/*.png","Sounds/*"]
+
+2.第二种，把资源都放在bundle中，然后打包时候这个bundle会直接拷贝进app的mainBundle中。使用的时候在mainBundle中查找这个bundle然后再搜索具体资源
+NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"JZShare" withExtension:@"bundle"];
+NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+UIImage *img = [UIImage imageNamed:icon inBundle:bundle compatibleWithTraitCollection:nil];
+
+3.第三种，这种方法利用 framework 的命名空间，有效防止了资源冲突。使用方法是先拿到最外面的 bundle，然后再去找下面指定名字 的 bundle 对象，再搜索具体资源
+NSBundle *bundle = [NSBundle bundleForClass:[MYSomeClass class]];
+NSURL *bundleURL = [bundle URLForResource:@"MyLibrary" withExtension:@"bundle"];
+NSBundle *resourceBundle = [NSBundle bundleWithURL: bundleURL];
+UIImage *img = [UIImage imageNamed:icon inBundle:bundle compatibleWithTraitCollection:nil];
+
+4.SDK中依赖的第三方库无法使用BITCODE
+post_install do |installer|
+installer.pods_project.targets.each do |target|
+target.build_configurations.each do |config|
+config.build_settings['ENABLE_BITCODE'] = 'NO'
+end
+end
+end
+
+*/

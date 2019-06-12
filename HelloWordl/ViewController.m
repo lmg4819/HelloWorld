@@ -28,8 +28,11 @@
 //    ((UINavigationController *)[UIApplication sharedApplication].delegate.window.rootViewController).topViewController
     
     
-    NSLock *mainLock = [[NSLock alloc]init];
     
+    
+    
+    NSLock *mainLock = [[NSLock alloc]init];
+//    [ViewController helloWorld];
     dispatch_async(dispatch_get_main_queue(), ^{
         
     });
@@ -112,3 +115,11 @@
 @end
 
 
+//@implementation NSObject (VCExtension)
+//
+//-(void)helloWorld
+//{
+//    NSLog(@"----------11111111111");
+//}
+//
+//@end

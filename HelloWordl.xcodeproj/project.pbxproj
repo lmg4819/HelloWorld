@@ -62,6 +62,15 @@
 		924A9DCD2276F863003A0226 /* JSRunTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 924A9DCC2276F863003A0226 /* JSRunTime.m */; };
 		924A9DCF22770539003A0226 /* 面试题总结文件 in Resources */ = {isa = PBXBuildFile; fileRef = 924A9DCE22770539003A0226 /* 面试题总结文件 */; };
 		92915522229BD58700ACE60D /* 界面卡顿 in Resources */ = {isa = PBXBuildFile; fileRef = 92915521229BD58700ACE60D /* 界面卡顿 */; };
+		92997EFC22AF9CC100BC0183 /* JSTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 92997EF822AF9CC100BC0183 /* JSTag.m */; };
+		92997EFD22AF9CC100BC0183 /* JSRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 92997EFB22AF9CC100BC0183 /* JSRepository.m */; };
+		92997F0B22AF9D6500BC0183 /* SectionTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 92997EFF22AF9D6500BC0183 /* SectionTwo.m */; };
+		92997F0C22AF9D6500BC0183 /* SectionThree.m in Sources */ = {isa = PBXBuildFile; fileRef = 92997F0122AF9D6500BC0183 /* SectionThree.m */; };
+		92997F0D22AF9D6500BC0183 /* Algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 92997F0222AF9D6500BC0183 /* Algorithm.m */; };
+		92997F0E22AF9D6500BC0183 /* SectionOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 92997F0322AF9D6500BC0183 /* SectionOne.m */; };
+		92997F0F22AF9D6500BC0183 /* SectionFour.m in Sources */ = {isa = PBXBuildFile; fileRef = 92997F0622AF9D6500BC0183 /* SectionFour.m */; };
+		92997F1022AF9D6500BC0183 /* SectionFive.m in Sources */ = {isa = PBXBuildFile; fileRef = 92997F0722AF9D6500BC0183 /* SectionFive.m */; };
+		92B872DC22A7A8AD00518ED0 /* Apple Launch Image Size.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 92B872DB22A7A8AD00518ED0 /* Apple Launch Image Size.xlsx */; };
 		92C6EB9A228406CD004BCD84 /* YYCacheAyalyse.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C6EB99228406CD004BCD84 /* YYCacheAyalyse.m */; };
 /* End PBXBuildFile section */
 
@@ -162,6 +171,23 @@
 		924A9DCC2276F863003A0226 /* JSRunTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRunTime.m; sourceTree = "<group>"; };
 		924A9DCE22770539003A0226 /* 面试题总结文件 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "面试题总结文件"; sourceTree = "<group>"; };
 		92915521229BD58700ACE60D /* 界面卡顿 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "界面卡顿"; sourceTree = "<group>"; };
+		92997EF822AF9CC100BC0183 /* JSTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTag.m; sourceTree = "<group>"; };
+		92997EF922AF9CC100BC0183 /* JSRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRepository.h; sourceTree = "<group>"; };
+		92997EFA22AF9CC100BC0183 /* JSTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTag.h; sourceTree = "<group>"; };
+		92997EFB22AF9CC100BC0183 /* JSRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRepository.m; sourceTree = "<group>"; };
+		92997EFF22AF9D6500BC0183 /* SectionTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionTwo.m; sourceTree = "<group>"; };
+		92997F0022AF9D6500BC0183 /* SectionFive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionFive.h; sourceTree = "<group>"; };
+		92997F0122AF9D6500BC0183 /* SectionThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionThree.m; sourceTree = "<group>"; };
+		92997F0222AF9D6500BC0183 /* Algorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Algorithm.m; sourceTree = "<group>"; };
+		92997F0322AF9D6500BC0183 /* SectionOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionOne.m; sourceTree = "<group>"; };
+		92997F0422AF9D6500BC0183 /* SectionFour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionFour.h; sourceTree = "<group>"; };
+		92997F0522AF9D6500BC0183 /* Algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Algorithm.h; sourceTree = "<group>"; };
+		92997F0622AF9D6500BC0183 /* SectionFour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionFour.m; sourceTree = "<group>"; };
+		92997F0722AF9D6500BC0183 /* SectionFive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionFive.m; sourceTree = "<group>"; };
+		92997F0822AF9D6500BC0183 /* SectionOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionOne.h; sourceTree = "<group>"; };
+		92997F0922AF9D6500BC0183 /* SectionThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionThree.h; sourceTree = "<group>"; };
+		92997F0A22AF9D6500BC0183 /* SectionTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionTwo.h; sourceTree = "<group>"; };
+		92B872DB22A7A8AD00518ED0 /* Apple Launch Image Size.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apple Launch Image Size.xlsx"; sourceTree = "<group>"; };
 		92C6EB98228406CD004BCD84 /* YYCacheAyalyse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYCacheAyalyse.h; sourceTree = "<group>"; };
 		92C6EB99228406CD004BCD84 /* YYCacheAyalyse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYCacheAyalyse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -412,6 +438,7 @@
 		920D2A722277DD770040F8EE /* 剑指offer  */ = {
 			isa = PBXGroup;
 			children = (
+				92997EFE22AF9D5A00BC0183 /* 第二遍 */,
 				920AAC52227EB39900362F56 /* 算法题 */,
 				920D2A7A2277E8DA0040F8EE /* JSTextContext.h */,
 				920D2A7B2277E8DA0040F8EE /* JSTextContext.m */,
@@ -461,13 +488,6 @@
 				920D2A912278255A0040F8EE /* JSPods */,
 			);
 			path = "CocoaPods使用";
-			sourceTree = "<group>";
-		};
-		920D2A932278255E0040F8EE /* Git使用 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Git使用";
 			sourceTree = "<group>";
 		};
 		920D2A94227825940040F8EE /* Block */ = {
@@ -524,6 +544,9 @@
 		920D36CF2275745A00D63241 /* HelloWordl */ = {
 			isa = PBXGroup;
 			children = (
+				92997F1122AF9D9100BC0183 /* 设计模式 */,
+				92997EF722AF9CC100BC0183 /* Git仓库 */,
+				92B872D522A7561800518ED0 /* OC编程之道 */,
 				92116DF222A0CE540069FCA6 /* CYPAuthenticationView.h */,
 				92116DF122A0CE540069FCA6 /* CYPAuthenticationView.m */,
 				920A864F2285693A0025A02A /* 应用开发知识总结 */,
@@ -533,7 +556,6 @@
 				920D2A9A227826230040F8EE /* 算法与数据结构 */,
 				920D2A97227825E30040F8EE /* 准备工作 */,
 				920D2A94227825940040F8EE /* Block */,
-				920D2A932278255E0040F8EE /* Git使用 */,
 				920D2A90227825490040F8EE /* CocoaPods使用 */,
 				920D2A8922781EF90040F8EE /* 内存相关 */,
 				920D2A8822781EE60040F8EE /* 编译器相关 */,
@@ -609,6 +631,51 @@
 			path = "面试题总结";
 			sourceTree = "<group>";
 		};
+		92997EF722AF9CC100BC0183 /* Git仓库 */ = {
+			isa = PBXGroup;
+			children = (
+				92997EF822AF9CC100BC0183 /* JSTag.m */,
+				92997EF922AF9CC100BC0183 /* JSRepository.h */,
+				92997EFA22AF9CC100BC0183 /* JSTag.h */,
+				92997EFB22AF9CC100BC0183 /* JSRepository.m */,
+			);
+			path = "Git仓库";
+			sourceTree = "<group>";
+		};
+		92997EFE22AF9D5A00BC0183 /* 第二遍 */ = {
+			isa = PBXGroup;
+			children = (
+				92997F0522AF9D6500BC0183 /* Algorithm.h */,
+				92997F0222AF9D6500BC0183 /* Algorithm.m */,
+				92997F0022AF9D6500BC0183 /* SectionFive.h */,
+				92997F0722AF9D6500BC0183 /* SectionFive.m */,
+				92997F0422AF9D6500BC0183 /* SectionFour.h */,
+				92997F0622AF9D6500BC0183 /* SectionFour.m */,
+				92997F0822AF9D6500BC0183 /* SectionOne.h */,
+				92997F0322AF9D6500BC0183 /* SectionOne.m */,
+				92997F0922AF9D6500BC0183 /* SectionThree.h */,
+				92997F0122AF9D6500BC0183 /* SectionThree.m */,
+				92997F0A22AF9D6500BC0183 /* SectionTwo.h */,
+				92997EFF22AF9D6500BC0183 /* SectionTwo.m */,
+			);
+			path = "第二遍";
+			sourceTree = "<group>";
+		};
+		92997F1122AF9D9100BC0183 /* 设计模式 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "设计模式";
+			sourceTree = "<group>";
+		};
+		92B872D522A7561800518ED0 /* OC编程之道 */ = {
+			isa = PBXGroup;
+			children = (
+				92B872DB22A7A8AD00518ED0 /* Apple Launch Image Size.xlsx */,
+			);
+			path = "OC编程之道";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -677,6 +744,7 @@
 				924A9DCF22770539003A0226 /* 面试题总结文件 in Resources */,
 				920D36DA2275745C00D63241 /* Assets.xcassets in Resources */,
 				920A86512285695A0025A02A /* 性能检测 in Resources */,
+				92B872DC22A7A8AD00518ED0 /* Apple Launch Image Size.xlsx in Resources */,
 				920D36D82275745A00D63241 /* Main.storyboard in Resources */,
 				920D2AA622782B230040F8EE /* 架构 in Resources */,
 				920D2A742277DD8C0040F8EE /* 剑指offer in Resources */,
@@ -693,15 +761,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92997F0B22AF9D6500BC0183 /* SectionTwo.m in Sources */,
 				920AAC5A227EB60400362F56 /* Section50.m in Sources */,
 				920D2AAD227832540040F8EE /* JSSortAlgorithm.m in Sources */,
 				920CE8DC22811638007C7FC4 /* Section63.m in Sources */,
+				92997F0E22AF9D6500BC0183 /* SectionOne.m in Sources */,
 				920B905222803676001C9F61 /* Section61.m in Sources */,
 				920B9031227FE2A9001C9F61 /* BinaryTreeNode.m in Sources */,
 				920D36D52275745A00D63241 /* ViewController.m in Sources */,
 				920CE8E422811D05007C7FC4 /* Section65.m in Sources */,
 				920D2A8C2278207E0040F8EE /* JSMemory.m in Sources */,
 				920D2A9D227826340040F8EE /* DataStruct.m in Sources */,
+				92997F0F22AF9D6500BC0183 /* SectionFour.m in Sources */,
 				920D2AA22278290A0040F8EE /* AspectProxy.m in Sources */,
 				920D2A7C2277E8DA0040F8EE /* JSTextContext.m in Sources */,
 				920CE8E8228122C4007C7FC4 /* Section66.m in Sources */,
@@ -717,18 +788,23 @@
 				920B904A22802D70001C9F61 /* Section59.m in Sources */,
 				924A9DCA2276E038003A0226 /* JSLock.m in Sources */,
 				920CE8EF22817B77007C7FC4 /* YYDiskCache.m in Sources */,
+				92997F0D22AF9D6500BC0183 /* Algorithm.m in Sources */,
+				92997EFD22AF9CC100BC0183 /* JSRepository.m in Sources */,
 				920D2A8F2278244B0040F8EE /* JSCompiler.m in Sources */,
 				920D2A85227816110040F8EE /* JSNetworking.m in Sources */,
 				920CE8F222817B84007C7FC4 /* YYMemoryCache.m in Sources */,
 				92C6EB9A228406CD004BCD84 /* YYCacheAyalyse.m in Sources */,
 				924A9DCD2276F863003A0226 /* JSRunTime.m in Sources */,
+				92997F1022AF9D6500BC0183 /* SectionFive.m in Sources */,
 				92116DF322A0CE540069FCA6 /* CYPAuthenticationView.m in Sources */,
 				9233BA502276D573009C19D3 /* JSThread.m in Sources */,
 				920B9029227FDDD3001C9F61 /* Section54.m in Sources */,
 				920B902D227FE100001C9F61 /* Section55.m in Sources */,
 				920B903E22802690001C9F61 /* Section56.m in Sources */,
 				920D36D22275745A00D63241 /* AppDelegate.m in Sources */,
+				92997EFC22AF9CC100BC0183 /* JSTag.m in Sources */,
 				920B901C227FCFE1001C9F61 /* Section51.m in Sources */,
+				92997F0C22AF9D6500BC0183 /* SectionThree.m in Sources */,
 				920AAC56227EB3CD00362F56 /* Section49.m in Sources */,
 				920B904222802816001C9F61 /* Section57.m in Sources */,
 				920B904E22803192001C9F61 /* Section60.m in Sources */,

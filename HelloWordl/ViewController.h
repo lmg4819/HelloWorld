@@ -16,4 +16,26 @@
  */
 
 @end
+/*
+@interface NSObject (VCExtension)
 
+- (void)helloWorld;
+
+@end
+
+@implementation NSObject (VCExtension)
+
+-(void)helloWorld
+{
+    NSLog(@"----------11111111111");
+}
+
+@end
+ 
+ 
+ - (void)viewDidLoad {
+ [super viewDidLoad];
+ [ViewController helloWorld];运行结果
+ }
+ 
+*/
