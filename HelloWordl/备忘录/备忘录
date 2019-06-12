@@ -1,0 +1,505 @@
+开发小知识
+https://www.jianshu.com/p/5a4ba3c165b9
+
+iOS 面试 完整版
+https://juejin.im/post/5c989fd15188252d5255f7f3
+
+OBJC中国
+https://objccn.io
+
+WebStorm破解教程
+https://www.cnblogs.com/cui-cui/p/8507435.html
+
+头条：https://techblog.toutiao.com
+美团：https://tech.meituan.com
+
+DYLD_PRINT_STATISTICS   1    pre-main 时间打印
+
+//------------------------------------------------------------------
+
+常用第三方资源
+MMDrawerController：对于使用侧滑风格的app，可使用MMDrawerController这套库，几行代码就可以实现了。
+SDWebImage：SDWebImage 网络图片获取及缓存处理。
+FMDB：sqlite的工具， 多线程FMDatabaseQueue实例，FMDB数据库的使用演示和封装工具类。
+MJRefresh：仅需一行代码就可以为UITableView或者CollectionView加上下拉刷新或者上拉刷新功能。
+可以自定义上下拉刷新的文字说明。具体使用看“使用方法”。
+SDAutoLayout/Masonry:一行代码搞定自动布局！支持Cell和Tableview高度自适应，Label和ScrollView内容自适应，致力于做最简单易用的AutoLayout库。
+MBProgressHUD:最多人用的loading。
+AFNetworking:ASI不升级以后，最多人用的网络连接开源库
+MWPhotoBrowser：一个非常不错的照片浏览器，在github的star接近3000个:一个非常不错的照片浏览器,j解决SDWebImage加载大图导致的内存警告问题。
+TZImagePickerController:图片选择器
+iCarousel:图片轮播器
+SDCycleScrollView:图片轮播器
+YLGIFImage：gif图片加载
+mac内存清理OmniDiskSqeeper
+查找无用的资源图片：LSUnusedResources
+使用代码监测内存泄漏的问题：MLeaksFinder
+SCLAlertView：弹框
+LBXScan：二维码扫描
+XTPopView.h:POPView
+OC转JSPatch的网站：http://bang590.github.io/JSPatchConvertor/
+DZNEmptyDataSet：空白数据显示框架
+MGSwipeTableCell:左滑操作按钮
+CYLTabBarController:低耦合集成TabBarController
+AvoidCrash:防止程序崩溃并且收集崩溃日志
+CMPopTipView：一个泡泡风格的提示框开源控件, 继承自UIView。iPad,iPhone通用
+TTGTagCollectionView:标签流显示控件，同时支持文字或自定义View
+KMCGeigerCounter:app卡顿问题检测
+
+iOS-Runtime-Headers：Apple私有库头文件
+注册码获取：http://idea.lanyus.com
+
+ZYCornerRadius：圆角效果
+
+FLEX：调试工具，很牛逼，很强大
+Jenkins ：http://localhost:8080/
+
+//------------------------------------------------------------------
+
+Git私有库管理
+
+克隆分支： 
+git clone -b 2.6.2 git@git.suixinhuan.com:mobile-ios/MGMS.git
+
+// git clone -b 分支名 git仓库地址
+
+
+查看本地所有cocoaPods本地仓库：
+
+pod repo /  pod repo list
+
+拉取私有仓库：
+
+pod repo add privateCocoaPodsSpec git@git.suixinhuan.com:mobile-ios/privateCocoapodsSpec.git
+
+// pod repo add 私有podSpec仓库名（自定义）git私有仓库地址
+
+更新私有仓库：
+
+pod repo update
+
+提交代码到私有仓库：
+
+pod repo push privateCocoaPodsSpec /Users/lmg/Desktop/公司项目/当前工作文件目录/CYPCloudDetection/CloudDetection.podspec   --allow-warnings --verbose --use-libraries
+
+// pod repo push  私有podSpec仓库名 podspec文件路径   辅助信息
+//pod repo push privateCocoaPodsSpec /Users/lmg/Desktop/公司项目/当前工作文件目录/CYPCloudDetection/CloudDetection.podspec   --allow-warnings --verbose --use-libraries
+
+
+检测代码有效性：
+pod lib lint --sources='git@git.suixinhuan.com:mobile-ios/privateCocoapodsSpec.git,https://github.com/CocoaPods/Specs.git' --allow-warnings --verbose --use-libraries
+
+搜索私有仓库：
+
+pod search CloudDetection
+
+pod repo update privateCocoaPodsSpec
+//更新指定私有仓库
+
+
+suixinhuan-privatecocoapodsspec
+
+// pod search 组件名
+
+删除私有库：
+
+pod repo remove [repoName]
+
+
+//------------------------------------------------------------------
+
+Flex 样式
+
+
+flexDirection:
+row:行，横向
+column:列，纵向
+
+
+flex布局权重
+flex=0:占用空间仅为内容所需空间
+flex=1:会占据剩余所有空间
+
+alignItems:子组件在垂直方向上的对齐方式
+flex-start:与父组件的顶部对齐。
+flex-end:与父组件的底部对齐。
+center:处于父容器的中间位置。
+stretch:竖直上填充整个容器。
+baseline:第一行文字的基线对齐
+
+
+justifyContent:子组件在水平方向上的对齐方式
+center：水平居中。
+flex-start：伸缩项目与父容器左端靠齐。
+flex-end：与父容器右端靠齐。
+space-around：所有子组件平均分配在父容器的水平方向上，左右都有留空隙。
+space-between：第一个子组件位于父容器左端，最后一个子组件位于父容器最右端。然后平均分配在父容器水平方向上。
+
+
+alignSelf:该属性用来设置单独组件的竖直对齐方式，与alignItem有点像。
+auto:按照自身设置的宽高来显示，如果没设置，效果跟streth一样.
+flex-start:与父容器顶部对齐
+flex-end:与父容器底部对齐。
+center:位于垂直位置。
+streth:垂直拉伸。
+
+flex:设置伸缩项目的伸缩样式
+flexWrap:flexWrap用于设置是否可换行
+nowrap:即使空间不够也不换行
+wrap:空间不够的话自动换行。
+由于在rn 0.28之后的版本上官方已经修改了flexWrap:'wrap'的工作方式了，之前版本的是flexWrap:'wrap'和默认的alignItems: 'stretch'是一起工作的；如果是0.28之后的版本，你需要加上alignItems: 'flex-start'
+
+
+
+//------------------------------------------------------------------
+
+杀死占用的端口： sudo lsof -i:8081
+sudo kill  PID
+
+
+
+创建指定版本的RN工程
+react-native init SCReactNativeDemo –-version 0.43.2
+
+
+
+//------------------------------------------------------------------
+
+Pod版本管理
+
+
+
+查看version：
+pod —version
+
+
+卸载指定版本
+sudo gem uninstall cocoapods -v 1.6.0
+
+安装指定版本
+sudo gem install cocoapods -v 1.5.3
+
+
+
+//------------------------------------------------------------------
+
+Git私有库打包
+
+pod package CYPDetectionSDK.podspec  --spec-sources=https://github.com/CocoaPods/Specs.git,git@git.suixinhuan.com:mobile-ios/privateCocoapodsSpec.git --library --force --no-mangle
+
+
+
+//------------------------------------------------------------------
+
+Woodpecker
+
+网络监听，沙河数据查看，NSUserDefault，VC，con
+
+
+//------------------------------------------------------------------
+
+算法指导
+https://github.com/MisterBooo/LeetCodeAnimation
+
+
+//------------------------------------------------------------------
+
+创建私有库
+
+1.在Git上新建仓库，并clone到本地
+2.在本地新建工程，将代码提交到Git仓库 pod lib create JSCategory(注意：工程目录最好在.git层，以防目录太深，校验不通过)
+3.工程完成以后提交Git仓库，打对应的tag
+4.pod repo push PrivateRepo JSCategory.podspec --allow-warnings --verbose --use-libraries
+5.也可以先本地校验 pod lib lint --sources='https://github.com/CocoaPods/Specs.git' --allow-warnings --verbose --use-libraries
+
+//------------------------------------------------------------------
+
+
+Pod version
+
+Pod spec create [name]
+
+
+pod ‘SSZipArchive’     //会安装最新版本
+pod 'Objection', '0.9'   //安装指定版本0.9
+
+逻辑运算符
+
+'> 0.1' Any version higher than 0.1
+'>= 0.1' Version 0.1 and any higher version
+'< 0.1' Any version lower than 0.1
+'<= 0.1' Version 0.1 and any lower version
+
+除了逻辑运算符外，CocoaPods也有一个乐观运算符
+
+'~> 0.1.2' Version 0.1.2 and the versions up to 0.2, not including 0.2 and higher
+
+'~> 0.1' Version 0.1 and the versions up to 1.0, not including 1.0 and higher
+
+'~> 0' Version 0 and higher, this is basically the same as not having it.
+
+
+
+//------------------------------------------------------------------
+
+多个target公用一份pods文件：
+
+第1种方法：//There are no targets called "Shows" in any Xcode projects
+abstract_target ‘Shows’ do
+
+pod ‘ShowsKit’
+
+end
+
+第2种方法：//There is implicit abstract target at the root of the Podfile, so you could write the above example as:
+
+去除 target ‘’  fo  end语句
+直接 pod ‘ShowsKit’
+
+//------------------------------------------------------------------
+
+
+Git查看提交信息
+
+//显示有变更的文件
+git status
+
+//显示当前分支的版本历史
+git log
+
+//显示commit历史，以及每次commit发生变更的文件
+git log —stat
+
+//搜索提交历史，根据关键词
+git lod -S  [keyword]
+
+//显示某个commit之后的所有变动
+git log [tag]  HEAD —grep feature
+
+显示某个文件的版本历史，包括文件改名
+git log —follow [file]
+Git whatchanged [file]
+
+显示指定文件相关的每一次diff
+git log -p [file]
+
+显示过去五次提交
+git log -5 —pretty —oneline
+
+显示暂存区和工作区的差异
+git diff HEAD
+
+显示你今天写了多少行代码
+git diff —shortstat “@{0 day ago}”
+
+显示某次提交发生变化的文件
+git show —name-only  [commit]
+
+显示某次提交时，某个文件的内容
+git show  [commit]:[filename]
+
+显示当前分支的最近几次提交
+git reflog
+
+
+//------------------------------------------------------------------
+
+
+Git分支管理
+
+查看本地分支列表:
+
+git branch
+
+查看Git远程服务器分支列表和本地分支：
+
+git branch -a
+
+列出所有远程分支
+
+git branch -r
+
+
+//*表示当前分支
+
+创建分支：
+
+git branch v1.2.0
+
+// git branch  分支名
+
+切换分支：
+
+git checkout  v1.2.0     //切换到指定分支
+git checkout -              //切换到上一个分支
+
+// git checkout  分支名
+
+创建并切换分支：
+
+git checkout -b v1.2.1
+
+提交新的分支到服务器：
+
+git push --set-upstream origin v1.2.1
+//--set-upstream 和远程分支关联
+
+合并分支
+
+git checkout master
+git merge v1.2.1
+
+删除远程分支的方法（1）： 
+git branch -d v1.2.0
+
+git push origin -d v1.2.0
+
+删除远程分支的方法（2）：
+
+git branch -d -r v1.2.0
+
+重命名远程分支：
+
+1.删除远程分支：
+git push origin -d v1.3.0
+
+2.重命名本地分支： git branch -m v1.3.0 v1.4.0
+//git branch -m 旧分支名  新分支名
+
+3.推送本地分支：
+git push origin v1.4.0
+
+
+//------------------------------------------------------------------
+
+Git新建代码库
+
+git init
+//在当前目录新建一个Git代码库
+
+git init [project-name]
+//新建一个目录，并将其初始化为Git代码库
+
+git clone [url]
+//下载一个项目和它的整个代码历史
+
+git config —lsit
+//显示当前的Git配置
+
+git config -e --global
+//编辑Git配置文件
+
+
+//------------------------------------------------------------------
+
+git init//创建git仓库
+git status //更新和查询问价状态
+git add//将新建的文件加入暂存区里面去
+git commit -m’注释’
+git  log//打印日志
+git log —pretty=oneline//日志规范化显示
+git reflow //查询所有日志变化
+git diff filename //查询某个文件的修改
+git reset —hard~ 版本号  //回退到某个版本
+fa583b9bfce4fa81b063d42daf3f4aa3354cda9e
+git reset —hard HEAD~数字//回退到某个版本HEAD指向master的指针
+git checkout  — filename //撤销修改：1.没有add前，直接恢复到初始状态   2.add后，恢复到add之前的状态
+
+
+//git 远程仓库
+git remote add origin https://github.com/tugenhua0707/testgit.git//推送文件到github仓库
+git clone  https://github.com/tugenhua0707/testgit.git //从仓库克隆到本地
+git add .
+git commit -m”注释”
+git push origin master//第一次
+git push //以后
+
+
+
+//创建分支
+git checkout -b dev//常见dev分支
+git branch //查看分支
+git checkout name//切换分支
+git merge dev//把dev分支内容合并到master上，要先切换到master分支（合并某分支到当前分支）
+git  branch -d dev//删除分支
+
+
+
+
+//------------------------------------------------------------------
+
+Git版本管理
+
+查看历史版本：
+
+git log  --pretty=oneline
+
+查看历史简略的统计信息
+
+git log —stat
+
+回退到上一个版本：
+
+git reset --hard HEAD^
+
+回退到指定版本： 
+git reset --hard 9c01a91c9c411c44bf292e2411cdded36b7593c4(commit id)
+
+
+git push origin HEAD --force（强推到远程）
+
+
+
+//注意事项：HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+
+
+
+//------------------------------------------------------------------
+
+Git标签管理
+
+
+列出所有标签：
+
+git tag
+
+查看标签信息：
+
+git show [tag]
+
+添加标签：
+
+git tag 0.0.1
+git tag 0.0.1 commitid//新建分支到指定commit上
+
+同步标签到服务器：
+
+git  push  --tags  //提交所有tag
+git  push  0.0.1       //提交指定tag
+
+新建一个分支指向某个tag：
+
+git  checkout -b [branch]  [tag]
+
+
+
+删除
+
+删除远程标签的方法(1)：
+
+git tag -d 0.0.1
+
+git push origin :refs/tags/0.0.1
+//删除远程标签,推送一个空标签到远程tag：
+
+删除远程标签的方法(2)：
+
+git push origin -d tag 0.0.1
+
+
+
+//------------------------------------------------------------------
+
+
+

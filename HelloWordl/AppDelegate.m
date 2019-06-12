@@ -34,7 +34,7 @@
 //    }];
  
     
-    
+     
     BinaryTreeNode *invertNode = [BinaryTree invertBinaryTree:treeNode];
     
     [BinaryTree levelTraverseTree:invertNode handle:^(BinaryTreeNode * _Nonnull treeNode) {

@@ -57,6 +57,7 @@
 		92116DF322A0CE540069FCA6 /* CYPAuthenticationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92116DF122A0CE540069FCA6 /* CYPAuthenticationView.m */; };
 		9233BA502276D573009C19D3 /* JSThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 9233BA4F2276D573009C19D3 /* JSThread.m */; };
 		923A0C04229CC6E400E695E4 /* 最近面试题总结 in Resources */ = {isa = PBXBuildFile; fileRef = 923A0C03229CC6E300E695E4 /* 最近面试题总结 */; };
+		9242BEFD22B09BAC00CD3521 /* 备忘录 in Resources */ = {isa = PBXBuildFile; fileRef = 9242BEFC22B09BAB00CD3521 /* 备忘录 */; };
 		924A9DC72276DFAB003A0226 /* JSRunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 924A9DC62276DFAB003A0226 /* JSRunLoop.m */; };
 		924A9DCA2276E038003A0226 /* JSLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 924A9DC82276E038003A0226 /* JSLock.m */; };
 		924A9DCD2276F863003A0226 /* JSRunTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 924A9DCC2276F863003A0226 /* JSRunTime.m */; };
@@ -163,6 +164,7 @@
 		9233BA4E2276D573009C19D3 /* JSThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSThread.h; sourceTree = "<group>"; };
 		9233BA4F2276D573009C19D3 /* JSThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSThread.m; sourceTree = "<group>"; };
 		923A0C03229CC6E300E695E4 /* 最近面试题总结 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "最近面试题总结"; sourceTree = "<group>"; };
+		9242BEFC22B09BAB00CD3521 /* 备忘录 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "备忘录"; sourceTree = "<group>"; };
 		924A9DC52276DFAB003A0226 /* JSRunLoop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRunLoop.h; sourceTree = "<group>"; };
 		924A9DC62276DFAB003A0226 /* JSRunLoop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRunLoop.m; sourceTree = "<group>"; };
 		924A9DC82276E038003A0226 /* JSLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSLock.m; sourceTree = "<group>"; };
@@ -544,6 +546,7 @@
 		920D36CF2275745A00D63241 /* HelloWordl */ = {
 			isa = PBXGroup;
 			children = (
+				9242BEFB22B09B5000CD3521 /* 备忘录 */,
 				92997F1122AF9D9100BC0183 /* 设计模式 */,
 				92997EF722AF9CC100BC0183 /* Git仓库 */,
 				92B872D522A7561800518ED0 /* OC编程之道 */,
@@ -617,6 +620,14 @@
 				924A9DCC2276F863003A0226 /* JSRunTime.m */,
 			);
 			path = Runtime;
+			sourceTree = "<group>";
+		};
+		9242BEFB22B09B5000CD3521 /* 备忘录 */ = {
+			isa = PBXGroup;
+			children = (
+				9242BEFC22B09BAB00CD3521 /* 备忘录 */,
+			);
+			path = "备忘录";
 			sourceTree = "<group>";
 		};
 		924A9DC42276DF10003A0226 /* 面试题总结 */ = {
@@ -736,6 +747,7 @@
 				92915522229BD58700ACE60D /* 界面卡顿 in Resources */,
 				920D2A99227825FE0040F8EE /* Prepare in Resources */,
 				923A0C04229CC6E400E695E4 /* 最近面试题总结 in Resources */,
+				9242BEFD22B09BAC00CD3521 /* 备忘录 in Resources */,
 				920D2A9F227826BD0040F8EE /* 知识点总结 in Resources */,
 				920D2A96227825A60040F8EE /* block in Resources */,
 				920AAC72227EDE8400362F56 /* C语言类型 in Resources */,
