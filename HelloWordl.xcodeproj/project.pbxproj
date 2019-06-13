@@ -55,6 +55,10 @@
 		920D36DD2275745C00D63241 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 920D36DB2275745C00D63241 /* LaunchScreen.storyboard */; };
 		920D36E02275745C00D63241 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 920D36DF2275745C00D63241 /* main.m */; };
 		92116DF322A0CE540069FCA6 /* CYPAuthenticationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92116DF122A0CE540069FCA6 /* CYPAuthenticationView.m */; };
+		921B627F22B1E6D30045656D /* 工厂模式 in Resources */ = {isa = PBXBuildFile; fileRef = 921B627E22B1E6D30045656D /* 工厂模式 */; };
+		921B628622B1F1490045656D /* ClothCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921B628522B1F1490045656D /* ClothCanvasView.m */; };
+		921B628922B1F19E0045656D /* PaperCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921B628822B1F19E0045656D /* PaperCanvasView.m */; };
+		921B628C22B1F7580045656D /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921B628B22B1F7580045656D /* CanvasView.m */; };
 		9233BA502276D573009C19D3 /* JSThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 9233BA4F2276D573009C19D3 /* JSThread.m */; };
 		923A0C04229CC6E400E695E4 /* 最近面试题总结 in Resources */ = {isa = PBXBuildFile; fileRef = 923A0C03229CC6E300E695E4 /* 最近面试题总结 */; };
 		9242BEFD22B09BAC00CD3521 /* 备忘录 in Resources */ = {isa = PBXBuildFile; fileRef = 9242BEFC22B09BAB00CD3521 /* 备忘录 */; };
@@ -161,6 +165,13 @@
 		920D36DF2275745C00D63241 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92116DF122A0CE540069FCA6 /* CYPAuthenticationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPAuthenticationView.m; sourceTree = "<group>"; };
 		92116DF222A0CE540069FCA6 /* CYPAuthenticationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPAuthenticationView.h; sourceTree = "<group>"; };
+		921B627E22B1E6D30045656D /* 工厂模式 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "工厂模式"; sourceTree = "<group>"; };
+		921B628422B1F1490045656D /* ClothCanvasView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClothCanvasView.h; sourceTree = "<group>"; };
+		921B628522B1F1490045656D /* ClothCanvasView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClothCanvasView.m; sourceTree = "<group>"; };
+		921B628722B1F19E0045656D /* PaperCanvasView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaperCanvasView.h; sourceTree = "<group>"; };
+		921B628822B1F19E0045656D /* PaperCanvasView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaperCanvasView.m; sourceTree = "<group>"; };
+		921B628A22B1F7580045656D /* CanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasView.h; sourceTree = "<group>"; };
+		921B628B22B1F7580045656D /* CanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
 		9233BA4E2276D573009C19D3 /* JSThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSThread.h; sourceTree = "<group>"; };
 		9233BA4F2276D573009C19D3 /* JSThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSThread.m; sourceTree = "<group>"; };
 		923A0C03229CC6E300E695E4 /* 最近面试题总结 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "最近面试题总结"; sourceTree = "<group>"; };
@@ -583,6 +594,19 @@
 			path = HelloWordl;
 			sourceTree = "<group>";
 		};
+		921B628022B1F0F60045656D /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				921B628A22B1F7580045656D /* CanvasView.h */,
+				921B628B22B1F7580045656D /* CanvasView.m */,
+				921B628422B1F1490045656D /* ClothCanvasView.h */,
+				921B628522B1F1490045656D /* ClothCanvasView.m */,
+				921B628722B1F19E0045656D /* PaperCanvasView.h */,
+				921B628822B1F19E0045656D /* PaperCanvasView.m */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		9233BA4A2276D536009C19D3 /* 多线程 */ = {
 			isa = PBXGroup;
 			children = (
@@ -682,7 +706,9 @@
 		92B872D522A7561800518ED0 /* OC编程之道 */ = {
 			isa = PBXGroup;
 			children = (
+				921B628022B1F0F60045656D /* Example */,
 				92B872DB22A7A8AD00518ED0 /* Apple Launch Image Size.xlsx */,
+				921B627E22B1E6D30045656D /* 工厂模式 */,
 			);
 			path = "OC编程之道";
 			sourceTree = "<group>";
@@ -751,6 +777,7 @@
 				920D2A9F227826BD0040F8EE /* 知识点总结 in Resources */,
 				920D2A96227825A60040F8EE /* block in Resources */,
 				920AAC72227EDE8400362F56 /* C语言类型 in Resources */,
+				921B627F22B1E6D30045656D /* 工厂模式 in Resources */,
 				920D2A8722781E750040F8EE /* 数据加密 in Resources */,
 				920D36DD2275745C00D63241 /* LaunchScreen.storyboard in Resources */,
 				924A9DCF22770539003A0226 /* 面试题总结文件 in Resources */,
@@ -797,6 +824,8 @@
 				920B9020227FD34C001C9F61 /* Section52.m in Sources */,
 				920CE8EC22817B66007C7FC4 /* YYKVStorage.m in Sources */,
 				920D36E02275745C00D63241 /* main.m in Sources */,
+				921B628C22B1F7580045656D /* CanvasView.m in Sources */,
+				921B628922B1F19E0045656D /* PaperCanvasView.m in Sources */,
 				920B904A22802D70001C9F61 /* Section59.m in Sources */,
 				924A9DCA2276E038003A0226 /* JSLock.m in Sources */,
 				920CE8EF22817B77007C7FC4 /* YYDiskCache.m in Sources */,
@@ -814,6 +843,7 @@
 				920B902D227FE100001C9F61 /* Section55.m in Sources */,
 				920B903E22802690001C9F61 /* Section56.m in Sources */,
 				920D36D22275745A00D63241 /* AppDelegate.m in Sources */,
+				921B628622B1F1490045656D /* ClothCanvasView.m in Sources */,
 				92997EFC22AF9CC100BC0183 /* JSTag.m in Sources */,
 				920B901C227FCFE1001C9F61 /* Section51.m in Sources */,
 				92997F0C22AF9D6500BC0183 /* SectionThree.m in Sources */,
